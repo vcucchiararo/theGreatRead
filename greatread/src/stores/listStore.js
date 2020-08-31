@@ -21,17 +21,21 @@ class ListStore extends EventEmitter {
     getBookList() {
         return _bookList;
     }
+    getBookById(id) {
+        return _bookList.find((book) => book.id === id);
+    }
 }
 
 const listStore = new ListStore();
 
-dispatcher.dispatch((action) => {
+dispatcher.register((action) => {
     switch (action.type) {
         case actionTypes.LOAD_BOOK_LIST:
             _bookList = action.data;
             listStore.emitChange();
             break;
         default:
+            break;
     }
 });
 

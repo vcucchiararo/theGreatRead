@@ -1,27 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import './home.scss';
-import PropTypes from 'prop-types';
-import loadBookList from '../../actions/listActions';
+// import './home.scss';
+// import PropTypes from 'prop-types';
+import { loadBookList } from '../../actions/listActions';
 import listStore from '../../stores/listStore';
+import BookListItem from './bookListItem';
 
-function Home() {
-    const [bookList, setBookList] = useState([]);
+function Home(props) {
+    const [bookList, setBookList] = useState(listStore.getBookList());
     useEffect(() => {
         listStore.addChangeListener(onChange);
-        if (bookList.length === 0) {
-            loadBookList();
-        }
-    });
+        if (bookList.length === 0) loadBookList();
+        return () => listStore.removeChangeListener(onChange);
+    }, [bookList.length]);
 
     function onChange() {
         setBookList(listStore.getBookList());
     }
     return (
-        bookList && (
-            <div>
-                <p>HELLO</p>
-            </div>
-        )
+        <>
+            {bookList &&
+                bookList.map((element) => (
+                    <BookListItem
+                        key={element.id}
+                        id={element.id}
+                        title={element.product.title}
+                        cover={element.product.cover}
+                    />
+                ))}
+        </>
     );
 }
 
