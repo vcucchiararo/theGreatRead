@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+}
+
+.container-book {
+    background: linear-gradient(180deg, rgba(252, 217, 206, 1) 35%, rgba(255, 255, 255, 1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.title p {
+    color: grey;
+    font-size: 18px;
+}
+
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: flex-start;
+}
