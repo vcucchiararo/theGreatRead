@@ -13,7 +13,7 @@ function BookDetail(props) {
     const [bookDescription, setBookDescription] = useState('');
     const [bookGenre, setBookGenre] = useState('');
     const [bookYear, setBookYear] = useState(0);
-    const [bookEditorial, setBookEditorial] = useState(0);
+    const [bookEditorial, setBookEditorial] = useState('');
     const [bookIsbn, setBookIsbn] = useState(0);
 
     useEffect(() => {
