@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import listStore from '../../stores/listStore';
 import { loadBookList } from '../../actions/listActions';
 import BookDetailItem from './BookDetailItem';
-import './detail.scss';
 
 function BookDetail(props) {
     const [bookList, setBookList] = useState(listStore.getBookList());
