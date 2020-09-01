@@ -3,7 +3,17 @@ import { Link } from 'react-router-dom';
 import AccordionComponent from './AccordionComponent';
 import './detail.scss';
 
-const BookDetailItem = ({ description, title, author, rating, image }) => {
+const BookDetailItem = ({
+    description,
+    title,
+    author,
+    rating,
+    image,
+    year,
+    isbn,
+    editorial,
+    genre
+}) => {
     return (
         <div className="container-book">
             <img
@@ -13,6 +23,18 @@ const BookDetailItem = ({ description, title, author, rating, image }) => {
             <div className="title">
                 <h1>{title}</h1>
                 <p>{author}</p>
+            </div>
+            <div className="container-ranking">
+                <p className="number-rating">{rating}</p>
+                <div className="button-rating">
+                    <button className="button">Muy bueno</button>
+                    <button className="button">2810 votos</button>
+                </div>
+            </div>
+            <div className="shadow-cover-image">
+                <div classname="cover-image">
+                    <img src={image} />
+                </div>
             </div>
 
             <div className="container-button">
@@ -24,29 +46,22 @@ const BookDetailItem = ({ description, title, author, rating, image }) => {
                 </Link>
                 <Link>
                     <img
-                        className="addFav_icon"
-                        src="https://trello-attachments.s3.amazonaws.com/5f4906a1d69abe739ecee02f/5f4e04cfbeb95a4c21272eae/11382dd01b58f8a80d4bb800ed016201/libro.png"
+                        className="addBook_icon"
+                        src="https://trello-attachments.s3.amazonaws.com/5f4e04cfbeb95a4c21272eae/512x512/ae5e99a44e7fab4d705c10894c4fd5d9/libro_%281%29.png"
                     />
                 </Link>
             </div>
-            <div className="shadow-cover-image">
-                <div classname="cover-image">
-                    <img src={image} />
-                </div>
-            </div>
 
-            <div className="container-ranking">
-                <p className="number-rating">{rating}</p>
-                <div className="button-rating">
-                    <button className="button">Muy bueno</button>
-                    <button className="button">2810 votos</button>
-                </div>
-            </div>
             <div className="description-book">
                 <p className="title-description">Resumen</p>
                 <p>{description}</p>
             </div>
-            <AccordionComponent />
+            <AccordionComponent
+                genre={genre}
+                year={year}
+                editorial={editorial}
+                isbn={isbn}
+            />
         </div>
     );
 };
