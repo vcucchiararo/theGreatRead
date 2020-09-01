@@ -10,7 +10,7 @@ const booksMock = [
             cover:
                 'https://images-na.ssl-images-amazon.com/images/I/51HzFPWh3dL._SX320_BO1,204,203,200_.jpg',
             description:
-                'Una emocionante historia basada en hechos reales sobre la memoria, el amor y la esperanza en medio del horror de Auschwitz.',
+                'Una emocionante historia basada en hechos reales sobre la memoria, el amor y la esperanza en medio del horror de Auschwitz. Una emocionante historia basada en hechos reales sobre la memoria, el amor y la esperanza en medio del horror de Auschwitz. Una emocionante historia basada en hechos reales sobre la memoria, el amor y la esperanza en medio del horror de Auschwitz. Una emocionante historia basada en hechos reales sobre la memoria, el amor y la esperanza en medio del horror de Auschwitz. Una emocionante historia basada en hechos reales sobre la memoria, el amor y la esperanza en medio del horror de Auschwitz.',
             novedades: true,
             superventas: false,
             genre: 'historia'

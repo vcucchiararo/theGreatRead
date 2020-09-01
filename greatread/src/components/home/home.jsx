@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import { loadBookList } from '../../actions/listActions';
 import listStore from '../../stores/listStore';
-import BookListItem from './bookListItem';
+import BookListItem from './BookListItem';
 
 function Home(props) {
     const [bookList, setBookList] = useState(listStore.getBookList());
