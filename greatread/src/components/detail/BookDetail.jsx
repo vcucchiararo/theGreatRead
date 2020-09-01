@@ -11,6 +11,10 @@ function BookDetail(props) {
     const [bookRating, setBookRating] = useState(0);
     const [bookCover, setBookCover] = useState('');
     const [bookDescription, setBookDescription] = useState('');
+    const [bookGenre, setBookGenre] = useState('');
+    const [bookYear, setBookYear] = useState(0);
+    const [bookEditorial, setBookEditorial] = useState('');
+    const [bookIsbn, setBookIsbn] = useState(0);
 
     useEffect(() => {
         listStore.addChangeListener(onChange);
@@ -26,6 +30,10 @@ function BookDetail(props) {
                 setBookRating(book.product.rating);
                 setBookCover(book.product.cover);
                 setBookDescription(book.product.description);
+                setBookGenre(book.product.genre);
+                setBookYear(book.product.year);
+                setBookEditorial(book.product.editorial);
+                setBookIsbn(book.product.isbn);
             }
         }
         return () => listStore.removeChangeListener(onChange);
@@ -43,6 +51,10 @@ function BookDetail(props) {
                     rating={bookRating}
                     title={bookTitle}
                     description={bookDescription}
+                    genre={bookGenre}
+                    year={bookYear}
+                    isbn={bookIsbn}
+                    editorial={bookEditorial}
                 />
             )}
         </>

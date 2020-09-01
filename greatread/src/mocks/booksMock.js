@@ -10,9 +10,10 @@ const booksMock = [
             cover:
                 'https://images-na.ssl-images-amazon.com/images/I/51HzFPWh3dL._SX320_BO1,204,203,200_.jpg',
             description:
-                'Una emocionante historia basada en hechos reales sobre la memoria, el amor y la esperanza en medio del horror de Auschwitz.',
-            novedades: true,
-            superventas: false,
+                'Una emocionante historia basada en hechos reales sobre la memoria, el amor y la esperanza en medio del horror de Auschwitz. Una emocionante historia basada en hechos reales sobre la memoria, el amor y la esperanza en medio del horror de Auschwitz. Una emocionante historia basada en hechos reales sobre la memoria, el amor y la esperanza en medio del horror de Auschwitz. Una emocionante historia basada en hechos reales sobre la memoria, el amor y la esperanza en medio del horror de Auschwitz. Una emocionante historia basada en hechos reales sobre la memoria, el amor y la esperanza en medio del horror de Auschwitz.',
+            editorial: 'ABC',
+            year: '2019',
+            isbn: 9788478884452,
             genre: 'historia'
         }
     },
@@ -28,8 +29,9 @@ const booksMock = [
                 'https://images-na.ssl-images-amazon.com/images/I/51Z8ckAJGEL._SX327_BO1,204,203,200_.jpg',
             description:
                 '¿Que pasaría si THE CRAZY HAACKS dejásemos de ser... CRAZY? ¡SERÍA EL FIN DE LA LOCURA Y LA DIVERSIÓN! Una poción está poniendo en peligro nuestra identidad y deberemos viajar a la INDIA para lograr el antídoto de LA PÓCIMA ETERNA.',
-            novedades: true,
-            superventas: false,
+            editorial: 'ABC',
+            year: '2019',
+            isbn: 9788478884452,
             genre: 'infantil'
         }
     },
@@ -45,8 +47,9 @@ const booksMock = [
                 'https://images-na.ssl-images-amazon.com/images/I/51qZJqyLTFL._SX335_BO1,204,203,200_.jpg',
             description:
                 'Este es un libro sobre la historia de los libros. Un recorrido por la vida de ese fascinante artefacto que inventamos para que las palabras pudieran viajar en el espacio y en el tiempo.',
-            novedades: true,
-            superventas: false,
+            editorial: 'ABC',
+            year: '2019',
+            isbn: 9788478884452,
             genre: 'historia'
         }
     },

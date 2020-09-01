@@ -7,22 +7,22 @@
 }
 
 .container-book {
-    // background: linear-gradient(180deg, rgba(252, 217, 206, 1) 35%, rgba(255, 255, 255, 1) 100%);
     padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    width: 100%;
 }
 
 .logo {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
 }
 
 .title {
-    margin-top: 10px;
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     font-size: 14px;
@@ -31,50 +31,101 @@
 .title p {
     color: grey;
     font-size: 18px;
-}
-
-.container-book {
-    display: flex;
+    margin-bottom: 10px
 }
 
 .addFav_icon {
-    margin-top: 10px;
     width: 30px;
     height: 30px;
     margin: 10px;
 }
 
-
-
-
-.button {
-    display: inline-block;
-    border-radius: 2px;
-    border: grey 1px solid;
-    width: 100px;
-    font-size: 8px;
-    align-items: flex-start;
+.addBook_icon {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
 }
 
+.button {
+    width: 100px;
+    font-size: 12px;
+    border: none;
+    margin: 3px;
+    background-color: rgb(123, 194, 123);
+    border-radius: 3px;
+}
 
-.cover-image {}
+.button:focus {
+    outline: 0;
+}
 
+// .separator-small {
+//     width: 100%;
+//     margin: auto;
+//     border-bottom: 0.8px solid #e74a112a;
+//     margin-bottom: 10px;
+// }
 
 .container-ranking {
     display: flex;
-
-    .title-rating {
-        font-size: 30px;
-        color: #e74a11;
-    }
-
-    .box-ranking {
-        display: flex;
-
-
-    }
+    width: 50%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
-.description-book {}
+.number-rating {
+    font-size: 50px;
+    color: #e74a11;
+}
 
-.accordionComponent {}
+.shadow-cover-image {
+    height: 499px;
+    -moz-box-shadow: -5px 6px 5px 0px rgba(231, 74, 17, 0.17);
+    box-shadow: -5px 6px 5px 0px rgba(231, 74, 17, 0.17);
+    margin-bottom: 15px;
+}
+
+.button-rating {
+    display: flex;
+    flex-direction: column;
+}
+
+.description-book {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 0.8px solid #e74a112a;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.title-description {
+    font-weight: bold;
+    margin-bottom: 5px
+}
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+.active,
+.accordion:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}

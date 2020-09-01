@@ -5,6 +5,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function SimpleAccordion() {
+export default function SimpleAccordion({ genre, editorial, year, isbn }) {
     const classes = useStyles();
 
     return (
@@ -33,10 +34,30 @@ export default function SimpleAccordion() {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        <li>Género:</li>
-                        <li>Editorial:</li>
-                        <li>Año edición:</li>
-                        <li>ISBN:</li>
+                        <Box textAlign="left" m={1}>
+                            Género:
+                            <Box textAlign="right" m={1}>
+                                {genre}
+                            </Box>
+                        </Box>
+                        <Box textAlign="left" m={1}>
+                            Editorial:
+                            <Box textAlign="right" m={1}>
+                                {editorial}
+                            </Box>
+                        </Box>
+                        <Box textAlign="left" m={1}>
+                            Año edición:
+                            <Box textAlign="right" m={1}>
+                                {year}
+                            </Box>
+                        </Box>
+                        <Box textAlign="left" m={1}>
+                            ISBN:
+                            <Box textAlign="right" m={1}>
+                                {isbn}
+                            </Box>
+                        </Box>
                     </Typography>
                 </AccordionDetails>
             </Accordion>
