@@ -33,7 +33,7 @@ const BookDetailItem = ({
             </div>
             <div className="shadow-cover-image">
                 <div classname="cover-image">
-                    <img src={image} />
+                    <img width="200" height="300" src={image} />
                 </div>
             </div>
 

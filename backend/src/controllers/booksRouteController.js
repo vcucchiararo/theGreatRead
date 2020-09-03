@@ -1,35 +1,80 @@
 const Book = require('../models/bookModel');
+const axios = require('axios');
+
+const googleApiPath = 'https://www.googleapis.com/books/v1/volumes?q=';
+const authorApiPath = `${googleApiPath}inauthor:`;
+const titleApiPath = `${googleApiPath}intitle:`;
+const subjectApiPath = `${googleApiPath}subject:`;
+
+function createBookModelList(items) {
+    const bookList = [];
+    items.forEach((book) => {
+        const currentBook = {
+            id: book.id || '',
+            title: book.volumeInfo.title || '',
+            author: book.volumeInfo.authors[0] || '',
+            averageRating: book.volumeInfo.averageRating || '',
+            image: book.volumeInfo.imageLinks
+                ? book.volumeInfo.imageLinks.thumbnail || ''
+                : '',
+            description: book.volumeInfo.description || '',
+            editorial: book.volumeInfo.publisher || '',
+            year: book.volumeInfo.publishedDate || '',
+            isbn: book.volumeInfo.industryIdentifiers[0].identifier || '',
+            genre: book.volumeInfo.categories[0] || ''
+        };
+        bookList.push(currentBook);
+    });
+    return bookList;
+}
+
+async function sendRequest(path) {
+    let books = null;
+    await axios
+        .get(path)
+        .then((response) => {
+            if (response.data.items.length > 0) {
+                const bookList = createBookModelList(response.data.items);
+                books = bookList;
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    return books;
+}
 
 function booksController(Book) {
-    function post(req, res) {
-        const book = new Book(req.body);
-        if (!req.body.title) {
-            res.status(400);
-            return res.send('Title is required');
-        } else {
-            book.save();
-            res.status(201);
-            return res.json(book);
-        }
-    }
-    function get(req, res) {
-        const query = {};
+    async function get(req, res) {
+        const { author, title, subject, id } = req.query;
 
-        if (req && req.query && req.query.id) {
-            query.id = req.query.id;
-        }
-
-        Book.find(query, (error, books) => {
-            if (error) {
-                res.status(400);
-                res.send(error);
-            } else {
+        if (author) {
+            const response = await sendRequest(`${authorApiPath}${author}`);
+            if (response.length > 0) {
                 res.status(200);
-                res.json(books);
+                return res.json(response);
+            } else {
+                console.log(response);
             }
-        });
+        } else if (title) {
+            const response = await sendRequest(`${titleApiPath}${title}`);
+            if (response.length > 0) {
+                res.status(200);
+                return res.json(response);
+            } else {
+                console.log(response);
+            }
+        } else if (subject) {
+            const response = await sendRequest(`${subjectApiPath}${subject}`);
+            if (response.length > 0) {
+                res.status(200);
+                return res.json(response);
+            } else {
+                console.log(response);
+            }
+        }
     }
 
-    return { get, post };
+    return { get };
 }
 module.exports = booksController;

@@ -4,7 +4,7 @@ import { loadBookList } from '../../actions/listActions';
 import BookDetailItem from './BookDetailItem';
 
 function BookDetail(props) {
-    const [bookList, setBookList] = useState(listStore.getBookList());
+    let [bookList, setBookList] = useState(listStore.getBookList());
     const [bookId, setBookId] = useState(null);
     const [bookTitle, setBookTitle] = useState('');
     const [bookAuthor, setBookAuthor] = useState('');
@@ -18,22 +18,23 @@ function BookDetail(props) {
 
     useEffect(() => {
         listStore.addChangeListener(onChange);
-        const bookId = +props.match.params.bookId;
+        console.log('bookList-------->', bookList);
+        const bookId = props.match.params.bookId;
         if (bookList.length === 0) {
             loadBookList();
         } else if (bookId) {
             const book = listStore.getBookById(bookId);
-
+            console.log('bookId-------_>', bookId);
             if (book) {
-                setBookTitle(book.product.title);
-                setBookAuthor(book.product.author);
-                setBookRating(book.product.rating);
-                setBookCover(book.product.cover);
-                setBookDescription(book.product.description);
-                setBookGenre(book.product.genre);
-                setBookYear(book.product.year);
-                setBookEditorial(book.product.editorial);
-                setBookIsbn(book.product.isbn);
+                setBookTitle(book.title);
+                setBookAuthor(book.author);
+                setBookRating(book.averageRating);
+                setBookCover(book.image);
+                setBookDescription(book.description);
+                setBookGenre(book.genre);
+                setBookYear(book.year);
+                setBookEditorial(book.editorial);
+                setBookIsbn(book.isbn);
             }
         }
         return () => listStore.removeChangeListener(onChange);
