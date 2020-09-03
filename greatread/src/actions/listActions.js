@@ -6,7 +6,7 @@ export function loadBookList(query) {
     return axios
         .get('/api/books', {
             params: {
-                author: 'asimov'
+                title: 'el poder del ahora'
             }
         })
         .then((book) => {

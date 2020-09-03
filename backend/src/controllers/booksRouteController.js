@@ -12,7 +12,9 @@ function createBookModelList(items) {
         const currentBook = {
             id: book.id || '',
             title: book.volumeInfo.title || '',
-            author: book.volumeInfo.authors[0] || '',
+            author: book.volumeInfo.authors
+                ? book.volumeInfo.authors[0] || ''
+                : '',
             averageRating: book.volumeInfo.averageRating || '',
             image: book.volumeInfo.imageLinks
                 ? book.volumeInfo.imageLinks.thumbnail || ''
@@ -20,8 +22,12 @@ function createBookModelList(items) {
             description: book.volumeInfo.description || '',
             editorial: book.volumeInfo.publisher || '',
             year: book.volumeInfo.publishedDate || '',
-            isbn: book.volumeInfo.industryIdentifiers[0].identifier || '',
-            genre: book.volumeInfo.categories[0] || ''
+            isbn: book.volumeInfo.industryIdentifiers
+                ? book.volumeInfo.industryIdentifiers[0].identifier || ''
+                : '',
+            genre: book.volumeInfo.categories
+                ? book.volumeInfo.categories[0] || ''
+                : ''
         };
         bookList.push(currentBook);
     });
