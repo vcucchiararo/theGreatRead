@@ -33,7 +33,7 @@ dispatcher.register((action) => {
     switch (action.type) {
         case actionTypes.LOAD_BOOK_LIST:
             _bookList = action.data;
-            listStore.emitChange();
+            listStore.emitChange(_bookList);
             break;
         default:
             throw `The action type is unknown. action.type: ${action.type}`;

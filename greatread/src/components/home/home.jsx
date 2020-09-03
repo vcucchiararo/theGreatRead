@@ -23,8 +23,8 @@ function Home(props) {
                     <BookListItem
                         key={element.id}
                         id={element.id}
-                        title={element.product.title}
-                        cover={element.product.cover}
+                        title={element.title}
+                        cover={element.image}
                     />
                 ))}
         </>
