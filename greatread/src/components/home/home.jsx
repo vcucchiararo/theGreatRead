@@ -33,14 +33,6 @@ function Home(props) {
             </Carousel>
         </>
     );
-
-    function Item(props) {
-        return (
-            <Paper>
-                <h2>{props.book.name}</h2>
-            </Paper>
-        );
-    }
 }
 
 export default Home;
