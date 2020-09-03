@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+}
+
+.container-slider {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.book-title {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    margin-bottom: 15px;
+    width: 30%;
+}
