@@ -4,8 +4,6 @@ import { loadBookList } from '../../actions/listActions';
 import listStore from '../../stores/listStore';
 import BookListItem from './BookListItem';
 import Carousel from 'react-material-ui-carousel';
-import LogoutButton from '../auth/logout/Logout';
-import Login from '../auth/login/Login';
 
 function Home(props) {
     const [bookList, setBookList] = useState(listStore.getBookList());
@@ -34,8 +32,6 @@ function Home(props) {
                         />
                     ))}
             </Carousel>
-            <Login />
-            <LogoutButton />
         </>
     );
 }
