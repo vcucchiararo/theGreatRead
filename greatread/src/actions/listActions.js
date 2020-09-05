@@ -6,7 +6,7 @@ export function loadBookList(query) {
     return axios
         .get('/api/books', {
             params: {
-                title: 'el poder del ahora'
+                title: 'harry potter'
             }
         })
         .then((book) => {

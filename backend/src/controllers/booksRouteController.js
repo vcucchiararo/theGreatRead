@@ -15,7 +15,7 @@ function createBookModelList(items) {
             author: book.volumeInfo.authors
                 ? book.volumeInfo.authors[0] || ''
                 : '',
-            averageRating: book.volumeInfo.averageRating || '',
+            averageRating: book.volumeInfo.averageRating || '5',
             image: book.volumeInfo.imageLinks
                 ? book.volumeInfo.imageLinks.thumbnail || ''
                 : '',
