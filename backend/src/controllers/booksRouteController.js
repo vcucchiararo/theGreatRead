@@ -26,8 +26,8 @@ function createBookModelList(items) {
                 ? book.volumeInfo.industryIdentifiers[0].identifier || ''
                 : '',
             genre: book.volumeInfo.categories
-                ? book.volumeInfo.categories[0] || ''
-                : ''
+                ? book.volumeInfo.categories[0] || 'Fiction'
+                : 'Fiction'
         };
         bookList.push(currentBook);
     });
