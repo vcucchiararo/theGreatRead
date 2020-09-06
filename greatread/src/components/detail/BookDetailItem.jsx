@@ -16,10 +16,10 @@ const BookDetailItem = ({
 }) => {
     return (
         <div className="container-book">
-            <img
+            {/* <img
                 className="logo"
                 src="https://trello-attachments.s3.amazonaws.com/5f4d74b3457c4e749f4bfea6/847x748/f0abc621274604fc9ce77e7079853efb/GreatRead.png"
-            />
+            /> */}
             <div className="title">
                 <h1>{title}</h1>
                 <p>{author}</p>

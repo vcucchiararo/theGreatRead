@@ -1,0 +1,48 @@
+.profile-container {
+    width: 480px;
+
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            border-radius: 50%;
+            margin-top: 20px;
+        }
+    }
+
+    .form-item-container {
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        input {
+            height: 30px;
+            padding: 15px;
+        }
+    }
+
+    .save-button-container {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .save-button {
+            border: 1px solid #52a3ba;
+            padding: 5px 0;
+            border-radius: 3px;
+            margin-bottom: 20px;
+        }
+
+        .save-button:hover {
+            background-color: #52a3ba;
+            color: white;
+        }
+    }
+}

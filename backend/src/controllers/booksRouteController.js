@@ -15,7 +15,7 @@ function createBookModelList(items) {
             author: book.volumeInfo.authors
                 ? book.volumeInfo.authors[0] || ''
                 : '',
-            averageRating: book.volumeInfo.averageRating || '',
+            averageRating: book.volumeInfo.averageRating || '5',
             image: book.volumeInfo.imageLinks
                 ? book.volumeInfo.imageLinks.thumbnail || ''
                 : '',
@@ -26,8 +26,8 @@ function createBookModelList(items) {
                 ? book.volumeInfo.industryIdentifiers[0].identifier || ''
                 : '',
             genre: book.volumeInfo.categories
-                ? book.volumeInfo.categories[0] || ''
-                : ''
+                ? book.volumeInfo.categories[0] || 'Fiction'
+                : 'Fiction'
         };
         bookList.push(currentBook);
     });

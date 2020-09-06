@@ -4,7 +4,6 @@ import { loadBookList } from '../../actions/listActions';
 import listStore from '../../stores/listStore';
 import BookListItem from './BookListItem';
 import Carousel from 'react-material-ui-carousel';
-import { Paper } from '@material-ui/core';
 
 function Home(props) {
     const [bookList, setBookList] = useState(listStore.getBookList());
@@ -17,6 +16,7 @@ function Home(props) {
     function onChange() {
         setBookList(listStore.getBookList());
     }
+
     return (
         <>
             <Carousel>
@@ -28,6 +28,7 @@ function Home(props) {
                             title={element.title}
                             cover={element.image}
                             rating={element.averageRating}
+                            author={element.author}
                         />
                     ))}
             </Carousel>
