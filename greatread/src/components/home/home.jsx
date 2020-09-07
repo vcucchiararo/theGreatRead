@@ -4,6 +4,7 @@ import { loadBookList } from '../../actions/listActions';
 import listStore from '../../stores/listStore';
 import BookListItem from './BookListItem';
 import Carousel from 'react-material-ui-carousel';
+import LoadingPage from '../LoadingPage/LoadingPage';
 
 function Home(props) {
     const [bookList, setBookList] = useState(listStore.getBookList());
@@ -19,19 +20,21 @@ function Home(props) {
 
     return (
         <>
-            <Carousel>
-                {bookList &&
-                    bookList.map((element) => (
-                        <BookListItem
-                            // key={element.id}
-                            id={element.id}
-                            title={element.title}
-                            cover={element.image}
-                            rating={element.averageRating}
-                            author={element.author}
-                        />
-                    ))}
-            </Carousel>
+            {bookList.length <= 0 && <LoadingPage />}
+            {bookList.length > 0 && (
+                <Carousel>
+                    {bookList &&
+                        bookList.map((element) => (
+                            <BookListItem
+                                id={element.id}
+                                title={element.title}
+                                cover={element.image}
+                                rating={element.averageRating}
+                                author={element.author}
+                            />
+                        ))}
+                </Carousel>
+            )}
         </>
     );
 }

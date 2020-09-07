@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './header.scss';
-import { Link } from 'react-router-dom';
-// import { logout } from '../auth/logout/Logout';
-
-// import LogoutButton from '../auth/logout/Logout';
+import { useAuth0 } from '@auth0/auth0-react';
+import { Link, NavLink } from 'react-router-dom';
+import Profile from '../auth/userProfile/Profile';
+import LogoutButton from '../auth/logout/Logout';
 import Login from '../auth/login/Login';
 
 function Header() {
     const [search, setSearch] = useState('');
-
+    const { isAuthenticated } = useAuth0();
     const handleSubmit = (event) => {
         event.preventDefault();
         window.location.pathname = '/finder' + search;
@@ -33,24 +33,34 @@ function Header() {
                         placeholder="Título, autor o género..."
                         onChange={(event) => setSearch(event.target.value)}
                     ></input>
-                    <select class="select-css">
+                    <select className="select-css">
                         <option className="option">Título</option>
                         <option className="option">Autor</option>
                         <option className="option">Género</option>
                     </select>
                 </form>
                 <div className="header-login">
-                    {/* <Link
-                        className="header-login__profile-button"
-                        to="/auth/profile"
-                    >
-                        Perfil
-                    </Link> */}
                     <p className="text-login">¿Ya tienes cuenta?</p>
                     <div className="header-login__button">
-                        <Login />
+                        {!isAuthenticated && <Login />}
+                        {isAuthenticated && (
+                            <>
+                                <Link
+                                    id="menu"
+                                    to="/auth/profile"
+                                    className="icon_container"
+                                >
+                                    <img
+                                        className="icon_profile"
+                                        widht="20px"
+                                        height="20px"
+                                        src="https://trello-attachments.s3.amazonaws.com/5f4906a1d69abe739ecee02f/5f56595d5b1a853f2ea0838e/4496d007bba6a1e8b81cef463c91b269/usuario_(1).png"
+                                    />
+                                    <LogoutButton />
+                                </Link>
+                            </>
+                        )}
                     </div>
-                    {/* <LogoutButton /> */}
                 </div>
             </div>
         </header>
