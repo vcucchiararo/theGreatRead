@@ -7,6 +7,8 @@ const Profile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
+    const [fiction, setFiction] = useState('');
+    const [education, setEducation] = useState('');
 
     const [userData, setUserData] = useState({
         name: '',
@@ -17,13 +19,14 @@ const Profile = () => {
     });
 
     function handleSubmit() {
-        console.log('user ---->', user);
         const { sub, email } = user;
         const userData = {
             userName,
             userEmail,
             sub,
-            email
+            email,
+            fiction,
+            education
         };
         createUser(userData);
     }
@@ -54,7 +57,7 @@ const Profile = () => {
                         <label> Email </label>
                         <input
                             type="email"
-                            value={userEmail}
+                            value={user.email}
                             onChange={(event) =>
                                 setUserEmail(event.target.value.trim())
                             }
@@ -62,27 +65,112 @@ const Profile = () => {
                     </div>
 
                     <div className="checkbox-container">
-                        <input
-                            type="checkbox"
-                            id="genreFiction"
-                            name="genreFiction"
-                            value="fiction"
-                        ></input>
-                        <label htmlFor="genreFiction">Fiction</label>
-                        <input
-                            type="checkbox"
-                            id="genreEducation"
-                            name="genreEducation"
-                            value="education"
-                        ></input>
-                        <label htmlFor="genreEducation">Education</label>
-                        <input
-                            type="checkbox"
-                            id="genreFantasy"
-                            name="genreFantasy"
-                            value="fantasy"
-                        ></input>
-                        <label htmlFor="genreFantasy">Fantasy</label>
+                        <label className="label-title">
+                            Selecciona tus géneros favoritos
+                        </label>
+                        <div className="checkbox-box">
+                            <label htmlFor="genreFiction">
+                                Fiction{' '}
+                                <input
+                                    className="checkbox"
+                                    type="checkbox"
+                                    id="genreEducation"
+                                    name="genreEducation"
+                                    value="education"
+                                ></input>
+                            </label>
+
+                            <label htmlFor="genreFiction">
+                                Fiction{' '}
+                                <input
+                                    className="checkbox"
+                                    type="checkbox"
+                                    id="genreEducation"
+                                    name="genreEducation"
+                                    value="fiction"
+                                ></input>
+                            </label>
+                            <label htmlFor="genreFiction">
+                                Fiction{' '}
+                                <input
+                                    className="checkbox"
+                                    type="checkbox"
+                                    id="genreEducation"
+                                    name="genreEducation"
+                                    value="education"
+                                ></input>
+                            </label>
+                            <label htmlFor="genreFiction">
+                                Fiction{' '}
+                                <input
+                                    className="checkbox"
+                                    type="checkbox"
+                                    id="genreEducation"
+                                    name="genreEducation"
+                                    value="education"
+                                ></input>
+                            </label>
+                            <label htmlFor="genreFiction">
+                                Fiction{' '}
+                                <input
+                                    className="checkbox"
+                                    type="checkbox"
+                                    id="genreEducation"
+                                    name="genreEducation"
+                                    value="education"
+                                ></input>
+                            </label>
+                            <label htmlFor="genreFiction">
+                                Fiction{' '}
+                                <input
+                                    className="checkbox"
+                                    type="checkbox"
+                                    id="genreEducation"
+                                    name="genreEducation"
+                                    value="education"
+                                ></input>
+                            </label>
+                            <label htmlFor="genreFiction">
+                                Fiction{' '}
+                                <input
+                                    className="checkbox"
+                                    type="checkbox"
+                                    id="genreEducation"
+                                    name="genreEducation"
+                                    value="education"
+                                ></input>
+                            </label>
+                            <label htmlFor="genreFiction">
+                                Fiction{' '}
+                                <input
+                                    className="checkbox"
+                                    type="checkbox"
+                                    id="genreEducation"
+                                    name="genreEducation"
+                                    value="education"
+                                ></input>
+                            </label>
+                            <label htmlFor="genreFiction">
+                                Fiction{' '}
+                                <input
+                                    className="checkbox"
+                                    type="checkbox"
+                                    id="genreEducation"
+                                    name="genreEducation"
+                                    value="education"
+                                ></input>
+                            </label>
+                            <label htmlFor="genreFiction">
+                                Fiction{' '}
+                                <input
+                                    className="checkbox"
+                                    type="checkbox"
+                                    id="genreEducation"
+                                    name="genreEducation"
+                                    value="education"
+                                ></input>
+                            </label>
+                        </div>
                     </div>
                     <div className="save-button-container">
                         <button
@@ -90,7 +178,20 @@ const Profile = () => {
                             type="submit"
                             onClick={(event) => {
                                 event.preventDefault();
-                                handleSubmit(userName, userEmail);
+                                handleSubmit(
+                                    userName,
+                                    userEmail,
+                                    fiction,
+                                    education
+                                );
+                                console.log(
+                                    handleSubmit(
+                                        userName,
+                                        userEmail,
+                                        fiction,
+                                        education
+                                    )
+                                );
                             }}
                         >
                             Guardar cambios

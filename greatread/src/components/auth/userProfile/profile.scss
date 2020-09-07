@@ -1,5 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+}
+
 .profile-container {
-    width: 480px;
 
     .image-container {
         display: flex;
@@ -25,6 +32,34 @@
         input {
             height: 30px;
             padding: 15px;
+        }
+    }
+
+    .checkbox-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+
+        .label-title {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            border-radius: 3px;
+            border: 1px solid grey;
+            width: 100%;
+            height: 32px;
+        }
+
+        .checkbox-box {
+            padding: 10px;
+        }
+
+        .checkbox {
+            margin: 10px;
         }
     }
 
