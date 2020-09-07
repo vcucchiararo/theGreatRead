@@ -1,11 +1,12 @@
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const User = require('../models/userModel');
 
-const msg = {
-    to: 'v.cucchiararo@gmail.com',
-    from: 'test@example.com',
-    subject: 'Sending with Twilio SendGrid is Fun',
-    text: 'and easy to do anywhere, even with Node.js',
-    html: '<strong>and easy to do anywhere, even with Node.js</strong>'
+const get = (req, res) => {
+    if (user) {
+        res.json(user);
+        res.status(200);
+    } else {
+        res.status(404);
+    }
 };
-sgMail.send(msg);
+
+module.exports = { get };

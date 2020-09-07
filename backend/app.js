@@ -1,16 +1,17 @@
 const express = require('express');
 const debug = require('debug')('app');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const app = express();
 const port = process.env.PORT || 3000;
 const Book = require('./src/models/bookModel');
+const User = require('./src/models/userModel');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// const db = mongoose.connect('mongodb://localhost/greatRead');
+const db = mongoose.connect('mongodb://localhost/greatRead');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -21,5 +22,8 @@ app.get('/', (req, res) => {
 
 const bookRoutes = require('./src/routes/bookRoutes')(Book);
 app.use('/api/books', bookRoutes);
+
+const userRoutes = require('./src/routes/userRoutes')(User);
+app.use('/api/auth', userRoutes);
 
 app.listen(port, () => debug(`Running on port ${port} `));

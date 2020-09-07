@@ -13,7 +13,7 @@ const Profile = () => {
         isAuthenticated && (
             <div className="profile-container">
                 <div className="image-container">
-                    <img src={user.picture} alt={user.name} />
+                    <img src={user.picture} alt="Imagen de perfil de usuario" />
                 </div>
 
                 <form>
@@ -27,7 +27,7 @@ const Profile = () => {
                     </div>
                     <div className="form-item-container">
                         <label> Email </label>
-                        <input type="text" value={user.name} />
+                        <input type="text" value={user.email} />
                     </div>
                     <div className="form-item-container">
                         <label> Modificar contraseña </label>
