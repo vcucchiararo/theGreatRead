@@ -5,8 +5,8 @@ const LogoutButton = () => {
     const { logout } = useAuth0();
 
     return (
-        <button onClick={() => logout({ returnTo: window.location.origin })}>
-            Log Out
+        <button onClick={() => logout({ returnTo: 'http://localhost:3000/' })}>
+            Salir
         </button>
     );
 };
