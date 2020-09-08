@@ -4,5 +4,7 @@ export default {
 
     //User actions//
     CREATE_USER: 'CREATE_USER',
-    UPDATE_USER: 'UPDATE_USER'
+    UPDATE_USER: 'UPDATE_USER',
+    LOAD_USER: 'LOAD_USER',
+    ADD_FAVORITE_BOOK: 'ADD_FAVORITE_BOOK'
 };

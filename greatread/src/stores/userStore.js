@@ -3,41 +3,38 @@ import dispatcher from '../dispatcher';
 import actionTypes from '../actions/actionTypes';
 
 const CHANGE_EVENT = 'change';
-let _bookList = [];
+let _user = [];
 
-class ListStore extends EventEmitter {
+class UserStore extends EventEmitter {
     addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback);
     }
-
     removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     }
-
     emitChange() {
         this.emit(CHANGE_EVENT);
     }
 
-    getBookList() {
-        return _bookList;
-    }
-
-    getBookById(id) {
-        return _bookList.find((book) => book.id === id);
+    getUser() {
+        return _user;
     }
 }
 
-const listStore = new ListStore();
+const userStore = new UserStore();
 
 dispatcher.register((action) => {
     switch (action.type) {
-        case actionTypes.LOAD_BOOK_LIST:
-            _bookList = action.data;
-            listStore.emitChange(_bookList);
+        case actionTypes.LOAD_USER:
+            debugger;
+            _user = action.data;
+            console.log('------_>_user', _user);
+
+            userStore.emitChange();
             break;
         default:
-        // throw `The action type is unknown. action.type: ${action.type}`;
+            break;
     }
 });
 
-export default listStore;
+export default userStore;

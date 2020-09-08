@@ -1,38 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import './profile.scss';
-import { createUser } from '../../../actions/userActions';
+import { createUser, loadUser } from '../../../actions/userActions';
+import userStore from '../../../stores/userStore';
+import LoadingPage from '../../LoadingPage/LoadingPage';
 
-const Profile = () => {
+const Profile = (props) => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    const [userName, setUserName] = useState('');
-    const [userEmail, setUserEmail] = useState('');
-    const [fiction, setFiction] = useState('');
-    const [education, setEducation] = useState('');
+    const [userLoaded, setUserLoaded] = useState(userStore.getUser());
+    console.log('-----------_> userloaded', userLoaded);
+    useEffect(() => {
+        userStore.addChangeListener(onChange);
+        if (userLoaded.length === 0) {
+            user && loadUser(user.sub);
+        }
 
-    const [userData, setUserData] = useState({
-        name: '',
-        lastName: '',
-        email: '',
-        password: '',
-        newPassword: ''
-    });
+        return () => userStore.removeChangeListener(onChange);
+    }, [userLoaded.length, user]);
 
-    function handleSubmit() {
-        const { sub, email } = user;
-        const userData = {
-            userName,
-            userEmail,
-            sub,
-            email,
-            fiction,
-            education
-        };
-        createUser(userData);
+    function onChange() {
+        setUserLoaded(userStore.getUser());
     }
 
+    if (isAuthenticated)
+        createUser({
+            userEmail: user.email,
+            sub: user.sub,
+            userNickname: user.nickname
+        });
+    const userId = Object._id;
+    console.log('----->console.userIDDDD', user);
+
     if (isLoading) {
-        return <div>Loading ...</div>;
+        return <LoadingPage />;
     }
 
     return (
@@ -42,162 +42,9 @@ const Profile = () => {
                     <img src={user.picture} alt="Imagen de perfil de usuario" />
                 </div>
 
-                <form>
-                    <div className="form-item-container">
-                        <label> Nombre </label>
-                        <input
-                            type="text"
-                            value={userName}
-                            onChange={(event) =>
-                                setUserName(event.target.value.trim())
-                            }
-                        />
-                    </div>
-                    <div className="form-item-container">
-                        <label> Email </label>
-                        <input
-                            type="email"
-                            value={user.email}
-                            onChange={(event) =>
-                                setUserEmail(event.target.value.trim())
-                            }
-                        />
-                    </div>
-
-                    <div className="checkbox-container">
-                        <label className="label-title">
-                            Selecciona tus géneros favoritos
-                        </label>
-                        <div className="checkbox-box">
-                            <label htmlFor="genreFiction">
-                                Fiction{' '}
-                                <input
-                                    className="checkbox"
-                                    type="checkbox"
-                                    id="genreEducation"
-                                    name="genreEducation"
-                                    value="education"
-                                ></input>
-                            </label>
-
-                            <label htmlFor="genreFiction">
-                                Fiction{' '}
-                                <input
-                                    className="checkbox"
-                                    type="checkbox"
-                                    id="genreEducation"
-                                    name="genreEducation"
-                                    value="fiction"
-                                ></input>
-                            </label>
-                            <label htmlFor="genreFiction">
-                                Fiction{' '}
-                                <input
-                                    className="checkbox"
-                                    type="checkbox"
-                                    id="genreEducation"
-                                    name="genreEducation"
-                                    value="education"
-                                ></input>
-                            </label>
-                            <label htmlFor="genreFiction">
-                                Fiction{' '}
-                                <input
-                                    className="checkbox"
-                                    type="checkbox"
-                                    id="genreEducation"
-                                    name="genreEducation"
-                                    value="education"
-                                ></input>
-                            </label>
-                            <label htmlFor="genreFiction">
-                                Fiction{' '}
-                                <input
-                                    className="checkbox"
-                                    type="checkbox"
-                                    id="genreEducation"
-                                    name="genreEducation"
-                                    value="education"
-                                ></input>
-                            </label>
-                            <label htmlFor="genreFiction">
-                                Fiction{' '}
-                                <input
-                                    className="checkbox"
-                                    type="checkbox"
-                                    id="genreEducation"
-                                    name="genreEducation"
-                                    value="education"
-                                ></input>
-                            </label>
-                            <label htmlFor="genreFiction">
-                                Fiction{' '}
-                                <input
-                                    className="checkbox"
-                                    type="checkbox"
-                                    id="genreEducation"
-                                    name="genreEducation"
-                                    value="education"
-                                ></input>
-                            </label>
-                            <label htmlFor="genreFiction">
-                                Fiction{' '}
-                                <input
-                                    className="checkbox"
-                                    type="checkbox"
-                                    id="genreEducation"
-                                    name="genreEducation"
-                                    value="education"
-                                ></input>
-                            </label>
-                            <label htmlFor="genreFiction">
-                                Fiction{' '}
-                                <input
-                                    className="checkbox"
-                                    type="checkbox"
-                                    id="genreEducation"
-                                    name="genreEducation"
-                                    value="education"
-                                ></input>
-                            </label>
-                            <label htmlFor="genreFiction">
-                                Fiction{' '}
-                                <input
-                                    className="checkbox"
-                                    type="checkbox"
-                                    id="genreEducation"
-                                    name="genreEducation"
-                                    value="education"
-                                ></input>
-                            </label>
-                        </div>
-                    </div>
-                    <div className="save-button-container">
-                        <button
-                            className="save-button"
-                            type="submit"
-                            onClick={(event) => {
-                                event.preventDefault();
-                                handleSubmit(
-                                    userName,
-                                    userEmail,
-                                    fiction,
-                                    education
-                                );
-                                console.log(
-                                    handleSubmit(
-                                        userName,
-                                        userEmail,
-                                        fiction,
-                                        education
-                                    )
-                                );
-                            }}
-                        >
-                            Guardar cambios
-                        </button>
-                    </div>
-                </form>
+                <div className="nickname-container">
+                    <h1 className="nickname-item"> Hola {user.nickname}!</h1>
+                </div>
             </div>
         )
     );

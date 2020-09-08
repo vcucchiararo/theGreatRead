@@ -3,10 +3,28 @@ import actionTypes from './actionTypes';
 import axios from 'axios';
 
 export function createUser(userData) {
-    console.log('---------> userData:', userData);
     return axios.post('/api/users', userData).then((userData) => {
         dispatcher.dispatch({
             type: actionTypes.CREATE_USER,
+            data: userData.data
+        });
+    });
+}
+
+export function loadUser(userId) {
+    return axios.get(`/api/users/${userId}`).then((userData) => {
+        dispatcher.dispatch({
+            type: actionTypes.LOAD_USER,
+            data: userData.data
+        });
+    });
+}
+
+export function favoriteBook(userId, bookId) {
+    return axios.put(`/api/users/${userId}`).then((userData) => {
+        debugger;
+        dispatcher.dispatch({
+            type: actionTypes.ADD_FAVORITE_BOOK,
             data: userData.data
         });
     });

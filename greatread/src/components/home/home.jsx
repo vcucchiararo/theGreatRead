@@ -26,6 +26,7 @@ function Home(props) {
                     {bookList &&
                         bookList.map((element) => (
                             <BookListItem
+                                key={element.id}
                                 id={element.id}
                                 title={element.title}
                                 cover={element.image}
