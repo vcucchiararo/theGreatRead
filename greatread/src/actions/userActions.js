@@ -20,9 +20,10 @@ export function loadUser(userId) {
     });
 }
 
-export function favoriteBook(userId, bookId) {
-    return axios.put(`/api/users/${userId}`).then((userData) => {
-        debugger;
+export function favoriteBook(userSub, bookId) {
+    console.log('------usrSub + book id', userSub, bookId);
+    const obj = { bookId: bookId };
+    return axios.put(`/api/users/${userSub}`, obj).then((userData) => {
         dispatcher.dispatch({
             type: actionTypes.ADD_FAVORITE_BOOK,
             data: userData.data

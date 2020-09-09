@@ -19,7 +19,7 @@ function BookDetail(props) {
     const [bookEditorial, setBookEditorial] = useState('');
     const [bookIsbn, setBookIsbn] = useState(0);
     const [userLoaded, setUserLoaded] = useState(userStore.getUser());
-
+    console.log('---------> userLoaded es... será andefainnn?', userLoaded);
     useEffect(() => {
         listStore.addChangeListener(onChange);
         const bookId = props.match.params.bookId;

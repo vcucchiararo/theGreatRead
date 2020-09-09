@@ -1,10 +1,14 @@
 export default {
+    //Books actions//
     LOAD_BOOK_LIST: 'LOAD_BOOK_LIST',
-    DELETE: 'DELETE',
 
     //User actions//
     CREATE_USER: 'CREATE_USER',
     UPDATE_USER: 'UPDATE_USER',
     LOAD_USER: 'LOAD_USER',
-    ADD_FAVORITE_BOOK: 'ADD_FAVORITE_BOOK'
+    ADD_FAVORITE_BOOK: 'ADD_FAVORITE_BOOK',
+    DELETE_FAVORITE_BOOK: 'DELETE_FAVORITE_BOOK',
+
+    //Finder Store//
+    SEARCH_FINDER: 'SEARCH_FINDER'
 };

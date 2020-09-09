@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AccordionComponent from './AccordionComponent';
 import './detail.scss';
-import addFavoriteBook from './addFavoriteBook';
+// import addFavoriteBook from './addFavoriteBook';
+import { favoriteBook } from '../../actions/userActions';
 
 const BookDetailItem = ({
     description,
@@ -43,8 +44,7 @@ const BookDetailItem = ({
                         <img
                             onClick={() => {
                                 console.log('estoy picando');
-                                debugger;
-                                addFavoriteBook(userSub, bookId);
+                                favoriteBook(userSub, bookId);
                             }}
                             className="addFav_icon"
                             src="https://trello-attachments.s3.amazonaws.com/5f4e04cfbeb95a4c21272eae/512x512/acf8c0e43f29a0a56ffc175fb33ed15e/corazon.png"

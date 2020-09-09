@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './header.scss';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Link, NavLink } from 'react-router-dom';
-import Profile from '../auth/userProfile/Profile';
+import { Link } from 'react-router-dom';
 import LogoutButton from '../auth/logout/Logout';
 import Login from '../auth/login/Login';
 
 function Header() {
     const [search, setSearch] = useState('');
     const { isAuthenticated } = useAuth0();
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        window.location.pathname = '/finder' + search;
-    };
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     window.location.pathname = '/finder/' + search;
+    // };
 
     return (
         <header className="header-container">
@@ -24,14 +23,14 @@ function Header() {
                         src="https://trello-attachments.s3.amazonaws.com/5f4d74b3457c4e749f4bfea6/847x748/f0abc621274604fc9ce77e7079853efb/GreatRead.png"
                     />
                 </Link>
-
-                <form className="header-form" onSubmit={handleSubmit}>
+                {/* onSubmit={handleSubmit} */}
+                <form className="header-form">
                     <input
                         type="text"
                         value={search}
                         className="header-form__search"
                         placeholder="Título, autor o género..."
-                        onChange={(event) => setSearch(event.target.value)}
+                        // onChange={(event) => setSearch(event.target.value)}
                     ></input>
                     <select className="select-css">
                         <option className="option">Título</option>

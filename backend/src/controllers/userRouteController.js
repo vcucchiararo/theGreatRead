@@ -4,8 +4,10 @@ const User = require('../models/userModel');
 
 const put = (req, res) => {
     const { user } = req;
+    const { bookId } = req.body;
     if (user) {
-        user.favoriteBooks = req.body.favoriteBooks;
+        console.log('----->req.body.bookId', req.body.bookId);
+        user.favoriteBooks = req.body.bookId;
         user.save((error) => {
             if (error) {
                 res.status(404);

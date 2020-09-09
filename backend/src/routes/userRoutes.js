@@ -9,6 +9,7 @@ function routes(User) {
     userRouter.route('/').post(usersRouteController.post);
 
     userRouter.use('/:id', (req, res, next) => {
+        console.log('--->req.body', req.body);
         User.findOne({ sub: req.params.id }, (error, user) => {
             if (error) {
                 res.send(error);
