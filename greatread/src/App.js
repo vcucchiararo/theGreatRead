@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import BookDetail from './components/detail/BookDetail';
 import Header from './components/header/Header';
-// import Home from './components/home/Home';
+import Home from './components/home/Home';
 import Profile from './components/auth/userProfile/Profile';
 import Footer from './components/footer/Footer';
 import Finder from './components/finder/Finder';
@@ -14,7 +14,7 @@ function App() {
         <>
             <Header />
             <Switch>
-                <Route path="/" exact component={Slider} />
+                <Route path="/" exact component={Home} />
                 <Route path="/book/:bookId" component={BookDetail} />
                 <Route path="/auth/profile" component={Profile} />
                 <Route path="/finder" component={Finder} />

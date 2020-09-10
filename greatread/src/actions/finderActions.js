@@ -2,17 +2,16 @@ import dispatcher from '../dispatcher';
 import actionTypes from './actionTypes';
 import axios from 'axios';
 
-export function finderSearch(query, filter) {
+export function finderSearch(query) {
     return axios
         .get('/api/books', {
             params: {
-                query: query,
-                filterType: filter
+                title: query
             }
         })
         .then((book) => {
             dispatcher.dispatch({
-                type: actionTypes.SEARCH_FINDER,
+                type: actionTypes.LOAD_BOOK_LIST,
                 data: book.data
             });
         });

@@ -6,10 +6,13 @@ const put = (req, res) => {
     const { user } = req;
     const { bookId } = req.body;
     if (user) {
-        console.log('----->req.body.bookId', req.body.bookId);
-        user.favoriteBooks = req.body.bookId;
+        console.log('----->req.body.bookId', bookId);
+        user.favoriteBooks.push(bookId);
+        console.log('-+-+-+-+->new array', user.favoriteBooks);
+
         user.save((error) => {
             if (error) {
+                console.log('=c============', error);
                 res.status(404);
                 res.send(error);
             } else {
@@ -18,6 +21,8 @@ const put = (req, res) => {
             }
         });
     } else {
+        console.log('=cc============', 'This user does not exist');
+
         res.status(404);
         res.send('This user does not exist');
     }
