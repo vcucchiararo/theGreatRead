@@ -30,7 +30,6 @@ dispatcher.register((action) => {
             userStore.emitChange();
             break;
         case actionTypes.ADD_FAVORITE_BOOK:
-            debugger;
             _user = action.data;
             if (_user) {
                 _user.favoriteBooks = action.data.favoriteBooks;
