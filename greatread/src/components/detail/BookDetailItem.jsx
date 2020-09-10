@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AccordionComponent from './AccordionComponent';
 import './detail.scss';
+// import addFavoriteBook from './addFavoriteBook';
+import { favoriteBook } from '../../actions/userActions';
 
 const BookDetailItem = ({
     description,
@@ -12,14 +14,14 @@ const BookDetailItem = ({
     year,
     isbn,
     editorial,
-    genre
+    genre,
+    user,
+    isAuthenticated,
+    bookId,
+    userSub
 }) => {
     return (
         <div className="container-book">
-            {/* <img
-                className="logo"
-                src="https://trello-attachments.s3.amazonaws.com/5f4d74b3457c4e749f4bfea6/847x748/f0abc621274604fc9ce77e7079853efb/GreatRead.png"
-            /> */}
             <div className="title">
                 <h1>{title}</h1>
                 <p>{author}</p>
@@ -36,20 +38,26 @@ const BookDetailItem = ({
                     <img width="200" height="300" src={image} />
                 </div>
             </div>
-
             <div className="container-button">
-                <Link>
-                    <img
-                        className="addFav_icon"
-                        src="https://trello-attachments.s3.amazonaws.com/5f4e04cfbeb95a4c21272eae/512x512/acf8c0e43f29a0a56ffc175fb33ed15e/corazon.png"
-                    />
-                </Link>
-                <Link>
-                    <img
-                        className="addBook_icon"
-                        src="https://trello-attachments.s3.amazonaws.com/5f4e04cfbeb95a4c21272eae/512x512/ae5e99a44e7fab4d705c10894c4fd5d9/libro_%281%29.png"
-                    />
-                </Link>
+                {isAuthenticated && (
+                    <>
+                        <img
+                            onClick={() => {
+                                console.log('estoy picando');
+                                favoriteBook(userSub, bookId);
+                            }}
+                            className="addFav_icon"
+                            src="https://trello-attachments.s3.amazonaws.com/5f4e04cfbeb95a4c21272eae/512x512/acf8c0e43f29a0a56ffc175fb33ed15e/corazon.png"
+                        />
+                        {/* 
+                        <Link>
+                            <img
+                                className="addBook_icon"
+                                src="https://trello-attachments.s3.amazonaws.com/5f4e04cfbeb95a4c21272eae/512x512/ae5e99a44e7fab4d705c10894c4fd5d9/libro_%281%29.png"
+                            />
+                        </Link> */}
+                    </>
+                )}
             </div>
 
             <div className="description-book">

@@ -15,6 +15,8 @@
 }
 
 .header {
+    width: 100%;
+
     height: 60px;
     display: flex;
     align-items: center;
@@ -31,7 +33,7 @@
 
 .header-form {
     display: flex;
-    width: 300px;
+    width: 280px;
     margin-left: 15px;
     margin-right: 51px;
 }
@@ -97,18 +99,18 @@ button {
 
 
 // Media queries
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 600px) {
     .header {
-        height: 117px;
+        height: 112px;
     }
 
     .header-logo {
-        width: 188px;
-        height: 98px;
+        width: 278px;
+        height: 67px;
     }
 
     .text-login {
-        display: block;
+        display: none;
         color: #52A3BA;
         font-size: 14px;
         width: 70%;
@@ -117,21 +119,72 @@ button {
     }
 
     .header-form {
-        width: 600px;
+        width: 544px;
+        margin-left: 0px;
+        margin-right: 0px;
     }
 
     .header-form__search {
-        width: 300px;
+        margin-left: 21px;
+        width: 263px;
     }
 
     .select-css {
         outline: none;
         padding: 0 4px;
-        width: 200px;
+        width: 127px;
     }
 
     .header-login {
-        width: 100%;
+        width: 79%;
+        justify-content: flex-end;
+    }
+
+    button {
+        border: none;
+        color: #52A3BA;
+        background: none;
+        align-items: center;
+        font-size: 18px;
+        margin-left: 8px;
+        width: auto;
+        margin-right: 25px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .header {
+        height: 112px;
+    }
+
+    .header-logo {
+        width: 106px;
+        height: 67px;
+        margin-left: 15px;
+    }
+
+    .text-login {
+        display: block;
+    }
+
+    .header-form {
+        width: 70%;
+        justify-content: center;
+    }
+
+    .header-form__search {
+        margin-left: 21px;
+        width: 350px;
+    }
+
+    .select-css {
+        outline: none;
+        padding: 0 4px;
+        width: 127px;
+    }
+
+    .header-login {
+        width: 20%;
         justify-content: flex-end;
     }
 

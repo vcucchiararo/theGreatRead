@@ -6,6 +6,8 @@ import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Profile from './components/auth/userProfile/Profile';
 import Footer from './components/footer/Footer';
+import Finder from './components/finder/Finder';
+import Slider from './components/home/slider/Slider';
 
 function App() {
     return (
@@ -14,7 +16,8 @@ function App() {
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/book/:bookId" component={BookDetail} />
-                <Route path="/auth/profile" exact component={Profile} />
+                <Route path="/auth/profile" component={Profile} />
+                <Route path="/finder" component={Finder} />
             </Switch>
             <Footer />
         </>

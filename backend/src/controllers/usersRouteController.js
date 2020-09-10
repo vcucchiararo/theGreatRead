@@ -1,10 +1,24 @@
 const User = require('../models/userModel');
 
 const post = (req, res) => {
-    console.log('HE ENTRADO AQUI! Y AUN NO SOY FELIZ');
-    const user = new User(req.body);
-    user.save();
-    res.status(201).json(user);
+    User.findOne(req.body, (error, user) => {
+        if (error) {
+            res.status(404);
+        } else {
+            if (user) {
+                res.status(200);
+                res.json(user);
+            } else {
+                const newUser = new User(req.body);
+                newUser.save();
+                res.status(201);
+                res.json(newUser);
+            }
+        }
+    });
+    // const user = new User(req.body);
+    // user.save();
+    // res.status(201).json(user);
 };
 
 module.exports = { post };

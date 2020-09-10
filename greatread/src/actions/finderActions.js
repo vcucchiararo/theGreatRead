@@ -2,8 +2,7 @@ import dispatcher from '../dispatcher';
 import actionTypes from './actionTypes';
 import axios from 'axios';
 
-export function loadBookList(query) {
-    console.log('query-----', query);
+export function finderSearch(query) {
     return axios
         .get('/api/books', {
             params: {
