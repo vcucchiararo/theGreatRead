@@ -4,21 +4,19 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import LogoutButton from '../auth/logout/Logout';
 import Login from '../auth/login/Login';
-import { loadBookList } from './../../actions/listActions';
+// import { loadBookList } from './../../actions/listActions';
+import { finderSearch } from '../../actions/finderActions';
 
 function Header() {
     const [search, setSearch] = useState();
     const { isAuthenticated } = useAuth0();
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     window.location.pathname = '/finder/' + search;
-    // };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-
-        loadBookList(search);
-        // window.location.pathname = '/finder/' + search;
+        let response = await finderSearch(search);
+        console.log('esto---', response);
+        //loadBookList(search);
+        window.location.pathname = '/finder/' + search;
         setSearch('');
     };
 

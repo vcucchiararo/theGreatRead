@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 function Slider(props) {
     const [bookList, setBookList] = useState(listStore.getBookList());
+
     useEffect(() => {
         listStore.addChangeListener(onChange);
         if (bookList.length === 0) loadBookList();
@@ -21,7 +22,7 @@ function Slider(props) {
     return (
         <>
             <div className="slider__text">
-                <p className="slider__title">LOS MÁS VALORADOS</p>
+                <p className="slider__title">{props.title}</p>
             </div>
             {bookList.length <= 0 && <LoadingPage />}
             {bookList.length > 0 && (

@@ -31,7 +31,7 @@ dispatcher.register((action) => {
             finderStore.emitChange(_finder);
             break;
         default:
-            break;
+        // break;
     }
 });
 

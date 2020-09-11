@@ -53,6 +53,7 @@ async function sendRequest(path) {
 function booksController(Book) {
     async function get(req, res) {
         const { author, title, subject, id } = req.query;
+        console.log('title----', title);
 
         if (author) {
             const response = await sendRequest(`${authorApiPath}${author}`);
@@ -64,6 +65,7 @@ function booksController(Book) {
             }
         } else if (title) {
             const response = await sendRequest(`${titleApiPath}${title}`);
+            console.log('response---', response);
             if (response.length > 0) {
                 res.status(200);
                 return res.json(response);

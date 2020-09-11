@@ -4,56 +4,37 @@ import finderStore from '../../stores/finderStore';
 import './finder.scss';
 import { Link } from 'react-router-dom';
 
-function Finder(query, filter) {
+function Finder(query) {
     const [finder, setFinder] = useState(finderStore.getFinder());
+    console.log('collection---', finder);
     const [imageNotAvailable, setImageNotAvailable] = useState('');
 
     useEffect(() => {
+        console.log('paso---1---');
         finderStore.addChangeListener(onChange);
-        if (finder.length === 0) finderSearch();
+        //if (finder.length === 0) finderSearch();
         return () => finderStore.removeChangeListener(onChange);
+        console.log('paso---2---');
     }, []);
 
     function onChange() {
-        setImageNotAvailable(
-            'https://www.filmaffinity.com/imgs/movies/noimgfull.jpg'
-        );
+        // setImageNotAvailable(
+        //     'https://www.filmaffinity.com/imgs/movies/noimgfull.jpg'
+        // );
+        console.log('paso---3---');
         setFinder(finderStore.getFinder());
+        console.log('paso---4---');
     }
 
     return (
         <section className="finder-container">
-            {!!finder[0] ? (
+            {finder.length > 0 ? (
                 finder.map((element) => {
                     return (
-                        <div
-                            to={'/book/' + element.id}
-                            key={element.id}
-                            className="finder-result"
-                        >
-                            <Link to={'/book/' + element.id}>
-                                <img
-                                    className="finder-result__img"
-                                    src={
-                                        !element.id
-                                            ? imageNotAvailable
-                                            : element.image
-                                    }
-                                    alt="Imagen resultado de busqueda"
-                                />
-                            </Link>
-                            <div className="finder-result__details">
-                                <Link to={'/book/' + element.id}>
-                                    <div className="finder-result__name">
-                                        {element.title}
-                                    </div>
-                                </Link>
-
-                                <div className="finder-result__type">
-                                    {element.description}
-                                </div>
-                            </div>
-                        </div>
+                        <>
+                            <h1>Búsqueda</h1>
+                            <div>-------------</div>
+                        </>
                     );
                 })
             ) : (

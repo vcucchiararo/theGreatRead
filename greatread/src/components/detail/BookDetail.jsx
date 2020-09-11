@@ -4,10 +4,12 @@ import { loadBookList } from '../../actions/listActions';
 import BookDetailItem from './BookDetailItem';
 import { useAuth0 } from '@auth0/auth0-react';
 import userStore from '../../stores/userStore';
+import { loadUser, favoriteBook } from '../../actions/userActions';
 
 function BookDetail(props) {
     let [bookList, setBookList] = useState(listStore.getBookList());
     const { user, isAuthenticated } = useAuth0();
+    const [mongoUser, setMongoUser] = useState(userStore.getUser());
     const [bookId, setBookId] = useState(null);
     const [bookTitle, setBookTitle] = useState('');
     const [bookAuthor, setBookAuthor] = useState('');
@@ -19,9 +21,11 @@ function BookDetail(props) {
     const [bookEditorial, setBookEditorial] = useState('');
     const [bookIsbn, setBookIsbn] = useState(0);
     const [userLoaded, setUserLoaded] = useState(userStore.getUser());
-    console.log('---------> userLoaded es... será andefainnn?', userLoaded);
+    const [toggleFavoriteButton, setToggleFavoriteButton] = useState(false);
+
     useEffect(() => {
         listStore.addChangeListener(onChange);
+        onSubmit();
         const bookId = props.match.params.bookId;
         if (bookList.length === 0) {
             loadBookList();
@@ -42,7 +46,22 @@ function BookDetail(props) {
             }
         }
         return () => listStore.removeChangeListener(onChange);
-    }, [bookList.length, props.match.params.bookId]);
+    }, [bookList]);
+
+    function onSubmit() {
+        (async function userLoading() {
+            await loadUser(user?.sub);
+            await setMongoUser(userStore.getUser());
+        })();
+        if (mongoUser && mongoUser.favoriteBooks) {
+            const isToggleButton = mongoUser.favoriteBooks.some((elem) => {
+                return elem === bookId;
+            });
+            setToggleFavoriteButton(isToggleButton);
+            favoriteBook(userLoaded.sub, bookId);
+        }
+    }
+
     function onChange() {
         setBookList(listStore.getBookList());
     }
@@ -63,6 +82,8 @@ function BookDetail(props) {
                     isAuthenticated={isAuthenticated}
                     bookId={bookId}
                     userSub={userLoaded.sub}
+                    submit={onSubmit}
+                    toggleFavoriteButton={toggleFavoriteButton}
                 />
             )}
         </>
