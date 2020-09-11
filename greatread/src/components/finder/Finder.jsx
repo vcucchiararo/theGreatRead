@@ -10,20 +10,17 @@ function Finder(query) {
     const [imageNotAvailable, setImageNotAvailable] = useState('');
 
     useEffect(() => {
-        console.log('paso---1---');
         finderStore.addChangeListener(onChange);
-        //if (finder.length === 0) finderSearch();
+        debugger;
+        if (finder.length === 0) finderSearch();
         return () => finderStore.removeChangeListener(onChange);
-        console.log('paso---2---');
-    }, []);
+    }, [finder]);
 
     function onChange() {
         // setImageNotAvailable(
         //     'https://www.filmaffinity.com/imgs/movies/noimgfull.jpg'
         // );
-        console.log('paso---3---');
         setFinder(finderStore.getFinder());
-        console.log('paso---4---');
     }
 
     return (

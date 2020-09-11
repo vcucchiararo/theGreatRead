@@ -6,17 +6,20 @@ import LogoutButton from '../auth/logout/Logout';
 import Login from '../auth/login/Login';
 // import { loadBookList } from './../../actions/listActions';
 import { finderSearch } from '../../actions/finderActions';
+import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-function Header() {
+function Header({ history }) {
     const [search, setSearch] = useState();
     const { isAuthenticated } = useAuth0();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         let response = await finderSearch(search);
-        console.log('esto---', response);
         //loadBookList(search);
-        window.location.pathname = '/finder/' + search;
+        debugger;
+        history.push(`/finder/${search}`);
+
         setSearch('');
     };
 
@@ -72,4 +75,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default withRouter(Header);
