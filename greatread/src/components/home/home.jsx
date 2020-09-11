@@ -6,9 +6,9 @@ function Home(props) {
     return (
         <>
             <Slider title={'LOS MAS VALORADOS'} />
-            <Slider title={'ACCIÓN'} />
+            {/* <Slider title={'ACCIÓN'} />
             <Slider title={'COMEDIA'} />
-            <Slider title={'COCINA'} />
+            <Slider title={'COCINA'} /> */}
         </>
     );
 }

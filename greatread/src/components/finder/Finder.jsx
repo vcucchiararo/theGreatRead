@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { finderSearch } from '../../actions/finderActions';
 import finderStore from '../../stores/finderStore';
 import './finder.scss';
-import { Link } from 'react-router-dom';
 
 function Finder(query) {
     const [finder, setFinder] = useState(finderStore.getFinder());
-    console.log('collection---', finder);
     const [imageNotAvailable, setImageNotAvailable] = useState('');
 
     useEffect(() => {
         finderStore.addChangeListener(onChange);
-        debugger;
         if (finder.length === 0) finderSearch();
         return () => finderStore.removeChangeListener(onChange);
     }, [finder]);

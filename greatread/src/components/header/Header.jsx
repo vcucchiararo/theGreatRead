@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import './header.scss';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import LogoutButton from '../auth/logout/Logout';
 import Login from '../auth/login/Login';
-// import { loadBookList } from './../../actions/listActions';
 import { finderSearch } from '../../actions/finderActions';
-import { Redirect } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
 
 function Header({ history }) {
     const [search, setSearch] = useState();
@@ -15,9 +12,7 @@ function Header({ history }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        let response = await finderSearch(search);
-        //loadBookList(search);
-        debugger;
+        await finderSearch(search);
         history.push(`/finder/${search}`);
 
         setSearch('');

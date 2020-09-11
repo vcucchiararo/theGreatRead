@@ -25,7 +25,6 @@ class FinderStore extends EventEmitter {
 const finderStore = new FinderStore();
 
 dispatcher.register((action) => {
-    debugger;
     switch (action.type) {
         case actionTypes.SEARCH_FINDER:
             _finder = action.data;

@@ -43,9 +43,10 @@ const BookDetailItem = ({
             <div className="container-button">
                 {isAuthenticated && (
                     <>
-                        {!toggleFavoriteButton && (
+                        {toggleFavoriteButton && (
                             <div
-                                onClick={() => {
+                                onClick={(event) => {
+                                    event.preventDefault();
                                     submit();
                                 }}
                             >
@@ -55,9 +56,11 @@ const BookDetailItem = ({
                                 />
                             </div>
                         )}
-                        {toggleFavoriteButton && (
+                        {!toggleFavoriteButton && (
                             <div
-                                onClick={() => {
+                                onClick={(event) => {
+                                    console.log('-----event', event);
+                                    event.preventDefault();
                                     submit();
                                 }}
                             >

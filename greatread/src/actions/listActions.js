@@ -7,7 +7,7 @@ export function loadBookList(query) {
     return axios
         .get('/api/books', {
             params: {
-                title: query
+                title: 'tintin'
             }
         })
         .then((book) => {
