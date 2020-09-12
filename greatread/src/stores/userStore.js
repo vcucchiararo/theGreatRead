@@ -27,6 +27,7 @@ dispatcher.register((action) => {
     switch (action.type) {
         case actionTypes.LOAD_USER:
             _user = action.data;
+            console.log('.......action.data', action.data);
             userStore.emitChange();
             break;
         case actionTypes.ADD_FAVORITE_BOOK:

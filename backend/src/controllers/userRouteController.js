@@ -24,6 +24,7 @@ const put = (req, res) => {
 
 const get = (req, res) => {
     const { id } = req.params;
+    console.log('------------id', id);
     const query = {
         sub: id
     };

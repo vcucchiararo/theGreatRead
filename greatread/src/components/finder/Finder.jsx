@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { finderSearch } from '../../actions/finderActions';
+import { booksSearch } from '../../actions/finderActions';
 import finderStore from '../../stores/finderStore';
-import './finder.scss';
+import './searchComponent.scss';
 
 function Finder(query) {
-    const [finder, setFinder] = useState(finderStore.getFinder());
+    const [finder, setFinder] = useState(finderStore.getBooks());
     const [imageNotAvailable, setImageNotAvailable] = useState('');
 
     useEffect(() => {
         finderStore.addChangeListener(onChange);
-        if (finder.length === 0) finderSearch();
+        if (finder.length === 0) booksSearch();
         return () => finderStore.removeChangeListener(onChange);
     }, [finder]);
 
@@ -17,7 +17,7 @@ function Finder(query) {
         // setImageNotAvailable(
         //     'https://www.filmaffinity.com/imgs/movies/noimgfull.jpg'
         // );
-        setFinder(finderStore.getFinder());
+        setFinder(finderStore.getBooks());
     }
 
     return (

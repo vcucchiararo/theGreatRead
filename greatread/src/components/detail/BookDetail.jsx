@@ -21,10 +21,11 @@ function BookDetail(props) {
     const [bookEditorial, setBookEditorial] = useState('');
     const [bookIsbn, setBookIsbn] = useState(0);
     const [userLoaded, setUserLoaded] = useState(userStore.getUser());
-    const [toggleFavoriteButton, setToggleFavoriteButton] = useState(false);
+    const [toggleFavoriteButton, setToggleFavoriteButton] = useState();
 
     useEffect(() => {
         listStore.addChangeListener(onChange);
+        // Por qué onsubmit aca?
         onSubmit();
         const bookId = props.match.params.bookId;
         if (bookList.length === 0) {
@@ -51,19 +52,24 @@ function BookDetail(props) {
     function onSubmit() {
         (async function userLoading() {
             await loadUser(user?.sub);
-            await setMongoUser(userStore.getUser());
+            setMongoUser(userStore.getUser());
         })();
         if (mongoUser && mongoUser.favoriteBooks) {
             const isToggleButton = mongoUser.favoriteBooks.some((elem) => {
                 return elem === bookId;
             });
-            setToggleFavoriteButton(isToggleButton);
+            setToggleFavoriteButton(!toggleFavoriteButton);
             favoriteBook(userLoaded.sub, bookId);
         }
     }
 
     function onChange() {
         setBookList(listStore.getBookList());
+        // const isToggleButton = mongoUser.favoriteBooks.some((elem) => {
+        //     return elem === bookId;
+        // });
+        // console.log('onChange----', isToggleButton);
+        // setToggleFavoriteButton(isToggleButton);
     }
     return (
         <>

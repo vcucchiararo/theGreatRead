@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Link, withRouter } from 'react-router-dom';
 import LogoutButton from '../auth/logout/Logout';
 import Login from '../auth/login/Login';
-import { finderSearch } from '../../actions/finderActions';
+import { booksSearch } from '../../actions/finderActions';
 
 function Header({ history }) {
     const [search, setSearch] = useState();
@@ -12,8 +12,8 @@ function Header({ history }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await finderSearch(search);
-        history.push(`/finder/${search}`);
+        await booksSearch(search);
+        history.push(`/search/${search}`);
 
         setSearch('');
     };
