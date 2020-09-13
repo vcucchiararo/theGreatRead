@@ -4,10 +4,12 @@ import { loadBookList } from '../../actions/listActions';
 import BookDetailItem from './BookDetailItem';
 import { useAuth0 } from '@auth0/auth0-react';
 import userStore from '../../stores/userStore';
+import { loadUser, favoriteBook } from '../../actions/userActions';
 
 function BookDetail(props) {
     let [bookList, setBookList] = useState(listStore.getBookList());
     const { user, isAuthenticated } = useAuth0();
+    const [mongoUser, setMongoUser] = useState(userStore.getUser());
     const [bookId, setBookId] = useState(null);
     const [bookTitle, setBookTitle] = useState('');
     const [bookAuthor, setBookAuthor] = useState('');
@@ -18,10 +20,14 @@ function BookDetail(props) {
     const [bookYear, setBookYear] = useState(0);
     const [bookEditorial, setBookEditorial] = useState('');
     const [bookIsbn, setBookIsbn] = useState(0);
+    const [isFavorite, setIsFavorite] = useState(false);
     const [userLoaded, setUserLoaded] = useState(userStore.getUser());
-    console.log('---------> userLoaded es... será andefainnn?', userLoaded);
+    const [toggleFavoriteButton, setToggleFavoriteButton] = useState();
+
     useEffect(() => {
         listStore.addChangeListener(onChange);
+        // Por qué onsubmit aca?
+        onSubmit();
         const bookId = props.match.params.bookId;
         if (bookList.length === 0) {
             loadBookList();
@@ -39,10 +45,27 @@ function BookDetail(props) {
                 setBookEditorial(book.editorial);
                 setBookIsbn(book.isbn);
                 setUserLoaded(userStore.getUser());
+                setIsFavorite(book.isFavorite);
             }
         }
         return () => listStore.removeChangeListener(onChange);
-    }, [bookList.length, props.match.params.bookId]);
+    }, [bookList, props.match.params.bookId]); //aguegue esto xa probar rl favbutton
+
+    function onSubmit() {
+        (async function userLoading() {
+            await loadUser(user?.sub);
+            setMongoUser(userStore.getUser());
+        })();
+        if (mongoUser && mongoUser.favoriteBooks) {
+            const isToggleButton = mongoUser.favoriteBooks.some((elem) => {
+                return elem === bookId;
+            });
+            setToggleFavoriteButton(!toggleFavoriteButton);
+            const book = listStore.getBookById(bookId);
+            favoriteBook(userLoaded.sub, book);
+        }
+    }
+
     function onChange() {
         setBookList(listStore.getBookList());
     }
@@ -63,6 +86,9 @@ function BookDetail(props) {
                     isAuthenticated={isAuthenticated}
                     bookId={bookId}
                     userSub={userLoaded.sub}
+                    submit={onSubmit}
+                    toggleFavoriteButton={toggleFavoriteButton}
+                    isFavorite={isFavorite}
                 />
             )}
         </>

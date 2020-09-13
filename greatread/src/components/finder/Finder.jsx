@@ -1,59 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { finderSearch } from '../../actions/finderActions';
+import { booksSearch } from '../../actions/finderActions';
 import finderStore from '../../stores/finderStore';
-import './finder.scss';
-import { Link } from 'react-router-dom';
+import './searchComponent.scss';
 
-function Finder(query, filter) {
-    const [finder, setFinder] = useState(finderStore.getFinder());
+function Finder(query) {
+    const [finder, setFinder] = useState(finderStore.getBooks());
     const [imageNotAvailable, setImageNotAvailable] = useState('');
 
     useEffect(() => {
         finderStore.addChangeListener(onChange);
-        if (finder.length === 0) finderSearch();
+        if (finder.length === 0) booksSearch();
         return () => finderStore.removeChangeListener(onChange);
-    }, []);
+    }, [finder]);
 
     function onChange() {
-        setImageNotAvailable(
-            'https://www.filmaffinity.com/imgs/movies/noimgfull.jpg'
-        );
-        setFinder(finderStore.getFinder());
+        // setImageNotAvailable(
+        //     'https://www.filmaffinity.com/imgs/movies/noimgfull.jpg'
+        // );
+        setFinder(finderStore.getBooks());
     }
 
     return (
         <section className="finder-container">
-            {!!finder[0] ? (
+            {finder.length > 0 ? (
                 finder.map((element) => {
                     return (
-                        <div
-                            to={'/book/' + element.id}
-                            key={element.id}
-                            className="finder-result"
-                        >
-                            <Link to={'/book/' + element.id}>
-                                <img
-                                    className="finder-result__img"
-                                    src={
-                                        !element.id
-                                            ? imageNotAvailable
-                                            : element.image
-                                    }
-                                    alt="Imagen resultado de busqueda"
-                                />
-                            </Link>
-                            <div className="finder-result__details">
-                                <Link to={'/book/' + element.id}>
-                                    <div className="finder-result__name">
-                                        {element.title}
-                                    </div>
-                                </Link>
-
-                                <div className="finder-result__type">
-                                    {element.description}
-                                </div>
-                            </div>
-                        </div>
+                        <>
+                            <h1>Búsqueda</h1>
+                            <div>-------------</div>
+                        </>
                     );
                 })
             ) : (

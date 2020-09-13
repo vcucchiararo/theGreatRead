@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
 import './header.scss';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import LogoutButton from '../auth/logout/Logout';
 import Login from '../auth/login/Login';
-import { loadBookList } from './../../actions/listActions';
+import { booksSearch } from '../../actions/finderActions';
 
-function Header() {
+function Header({ history }) {
     const [search, setSearch] = useState();
     const { isAuthenticated } = useAuth0();
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     window.location.pathname = '/finder/' + search;
-    // };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        await booksSearch(search);
+        history.push(`/search/${search}`);
 
-        loadBookList(search);
-        // window.location.pathname = '/finder/' + search;
         setSearch('');
     };
 
@@ -74,4 +70,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default withRouter(Header);

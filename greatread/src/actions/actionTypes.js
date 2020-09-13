@@ -9,6 +9,6 @@ export default {
     ADD_FAVORITE_BOOK: 'ADD_FAVORITE_BOOK',
     DELETE_FAVORITE_BOOK: 'DELETE_FAVORITE_BOOK',
 
-    //Finder Store//
-    SEARCH_FINDER: 'SEARCH_FINDER'
+    //Search actions//
+    SEARCH_BOOKS: 'SEARCH_BOOKS'
 };

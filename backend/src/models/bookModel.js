@@ -11,7 +11,8 @@ const bookModel = new Schema({
     editorial: { type: String },
     year: { type: String },
     isbn: { type: Number },
-    genre: { type: String }
+    genre: { type: String },
+    isFavorite: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('Book', bookModel);
