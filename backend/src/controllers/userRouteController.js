@@ -3,9 +3,7 @@ const { filterArray } = require('./helper');
 const User = require('../models/userModel');
 
 const put = (req, res) => {
-    console.log('req----', req);
     const { user } = req;
-    console.log('user-----', user);
     const { book } = req.body;
     if (user) {
         user.favoriteBooks = filterArray(user.favoriteBooks, book);

@@ -3,7 +3,6 @@ import actionTypes from './actionTypes';
 import axios from 'axios';
 
 export function loadBookList(query) {
-    // console.log('query-----', query);
     return axios
         .get('/api/books', {
             params: {

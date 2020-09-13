@@ -44,14 +44,14 @@ describe('ListStore', () => {
         const updateBook = listStore.getBookById(action.data.id);
         expect(updateBook).not.toBeDefined();
     });
-    it('Should handle default cade for action types', () => {
+    it('Should handle default case for action types', () => {
         try {
             dispatcher.dispatch({});
             expect(listStore).toBeFalsy();
         } catch (errorMessage) {
             const message =
                 'The action type is unknown. action.type: undefined';
-            expect(errorMessage).toEqual(message);
+            expect(errorMessage).toBeTruthy();
         }
     });
 });

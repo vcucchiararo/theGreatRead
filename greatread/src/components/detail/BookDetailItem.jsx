@@ -58,7 +58,6 @@ const BookDetailItem = ({
                                 {!toggleFavoriteButton && (
                                     <div
                                         onClick={(event) => {
-                                            console.log('-----event', event);
                                             event.preventDefault();
                                             submit();
                                         }}

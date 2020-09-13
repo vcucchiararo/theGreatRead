@@ -21,7 +21,6 @@ function SearchComponent() {
         if (userLoaded.length === 0) {
             user && loadUser(user.sub);
         }
-        // console.log('books1----------->', books);
         return () => userStore.removeChangeListener(onChange);
     }, [userLoaded.length, user]);
 

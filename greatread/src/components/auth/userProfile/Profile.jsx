@@ -8,8 +8,7 @@ import LoadingPage from '../../LoadingPage/LoadingPage';
 const Profile = (props) => {
     const { user, isAuthenticated, isLoading } = useAuth0();
     const [userLoaded, setUserLoaded] = useState(userStore.getUser());
-    console.log('uuuuuuuuuuuuseeeeeeeerrrrrrrrrrPROFILE', user);
-    console.log('uuuuuuuuuuuuseeeeeeeerrrrrrrrrrPROFILE', userLoaded);
+
     useEffect(() => {
         userStore.addChangeListener(onChange);
         if (userLoaded.length === 0) {

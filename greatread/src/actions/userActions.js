@@ -4,7 +4,6 @@ import axios from 'axios';
 
 export function createUser(userData) {
     return axios.post('/api/users', userData).then((userData) => {
-        console.log('------->USER DATA', userData);
         dispatcher.dispatch({
             type: actionTypes.CREATE_USER,
             data: userData.data
@@ -22,7 +21,6 @@ export function loadUser(userId) {
 }
 
 export function favoriteBook(userSub, book) {
-    console.log('------usrSub + book id', userSub, book);
     const obj = { book: book };
     return axios.put(`/api/users/${userSub}`, obj).then((userData) => {
         dispatcher.dispatch({
