@@ -7,6 +7,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Box from '@material-ui/core/Box';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SearchComponentCard({
-    key,
+    id,
     image,
     title,
     author,
@@ -30,10 +31,10 @@ function SearchComponentCard({
     const classes = useStyles();
     return (
         <>
-            <div className="card-container" key={key}>
-                <div className="image">
+            <div className="card-container" key={id}>
+                <Link to={`/book/${id}`} className="image">
                     <img width="100%" height="100%" src={image} />
-                </div>
+                </Link>
                 <div className="title-rating">
                     <div className="title-author">
                         <p className="title">{title}</p>

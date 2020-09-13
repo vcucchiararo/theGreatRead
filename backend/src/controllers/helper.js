@@ -1,12 +1,12 @@
-function filterArray(array, id) {
+function filterArray(favoriteBooks, book) {
     let newArray = [];
 
-    const check = array.some((elem) => elem === id);
+    const check = favoriteBooks.some((elem) => elem === book.id);
 
     if (check) {
-        newArray = array.filter((elem) => elem !== id);
+        newArray = favoriteBooks.filter((elem) => elem !== book.id);
     } else {
-        newArray = [...array, id];
+        newArray = [...favoriteBooks, book];
     }
     return newArray;
 }

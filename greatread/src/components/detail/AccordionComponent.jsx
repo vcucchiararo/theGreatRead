@@ -36,25 +36,25 @@ export default function SimpleAccordion({ genre, editorial, year, isbn }) {
                     <Typography>
                         <Box textAlign="left" m={1}>
                             Género:
-                            <Box textAlign="right" m={1}>
+                            <Box textAlign="left" m={1}>
                                 {genre}
                             </Box>
                         </Box>
                         <Box textAlign="left" m={1}>
                             Editorial:
-                            <Box textAlign="right" m={1}>
+                            <Box textAlign="left" m={1}>
                                 {editorial}
                             </Box>
                         </Box>
                         <Box textAlign="left" m={1}>
                             Año edición:
-                            <Box textAlign="right" m={1}>
+                            <Box textAlign="left" m={1}>
                                 {year}
                             </Box>
                         </Box>
                         <Box textAlign="left" m={1}>
                             ISBN:
-                            <Box textAlign="right" m={1}>
+                            <Box textAlign="left" m={1}>
                                 {isbn}
                             </Box>
                         </Box>

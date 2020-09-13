@@ -3,10 +3,12 @@ const { filterArray } = require('./helper');
 const User = require('../models/userModel');
 
 const put = (req, res) => {
+    console.log('req----', req);
     const { user } = req;
-    const { bookId } = req.body;
+    console.log('user-----', user);
+    const { book } = req.body;
     if (user) {
-        user.favoriteBooks = filterArray(user.favoriteBooks, bookId);
+        user.favoriteBooks = filterArray(user.favoriteBooks, book);
         user.save((error) => {
             if (error) {
                 res.status(404);
@@ -24,7 +26,6 @@ const put = (req, res) => {
 
 const get = (req, res) => {
     const { id } = req.params;
-    console.log('------------id', id);
     const query = {
         sub: id
     };
