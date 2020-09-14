@@ -7,7 +7,7 @@ import userStore from '../../stores/userStore';
 
 import './searchComponent.scss';
 import SearchComponentCard from './components/SearchComponentCard';
-import LoadingPage from './../LoadingPage/LoadingPage';
+import LoadingPage from '../LoadingPage/LoadingPage';
 import { useEventCallback } from '@material-ui/core';
 
 function SearchComponent() {
@@ -38,11 +38,12 @@ function SearchComponent() {
         matchBooksCollection.forEach((el) => (el.isFavorite = false));
 
         matchBooksCollection.reduce((result, matchBooksCollection, index) => {
-            favoriteBooks.forEach((ele) => {
-                if (matchBooksCollection.id === ele.id) {
-                    matchBooksCollection.isFavorite = true;
-                }
-            });
+            favoriteBooks &&
+                favoriteBooks.forEach((ele) => {
+                    if (ele && matchBooksCollection.id === ele.id) {
+                        matchBooksCollection.isFavorite = true;
+                    }
+                });
         }, matchBooksCollection);
 
         setMatchBooks(matchBooksCollection);

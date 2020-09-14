@@ -5,6 +5,7 @@ const googleApiPath = 'https://www.googleapis.com/books/v1/volumes?q=';
 const authorApiPath = `${googleApiPath}inauthor:`;
 const titleApiPath = `${googleApiPath}intitle:`;
 const subjectApiPath = `${googleApiPath}subject:`;
+const idApiPath = `${googleApiPath}id`;
 
 function createBookModelList(items) {
     const bookList = [];
@@ -72,6 +73,14 @@ function booksController(Book) {
             }
         } else if (subject) {
             const response = await sendRequest(`${subjectApiPath}${subject}`);
+            if (response.length > 0) {
+                res.status(200);
+                return res.json(response);
+            } else {
+                console.log(response);
+            }
+        } else if (id) {
+            const response = await sendRequest(`${idApiPath}${id}`);
             if (response.length > 0) {
                 res.status(200);
                 return res.json(response);

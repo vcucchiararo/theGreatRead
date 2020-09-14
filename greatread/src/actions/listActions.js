@@ -6,7 +6,7 @@ export function loadBookList(query) {
     return axios
         .get('/api/books', {
             params: {
-                title: 'tintin'
+                title: query
             }
         })
         .then((book) => {
@@ -15,4 +15,14 @@ export function loadBookList(query) {
                 data: book.data
             });
         });
+}
+
+export function loadBookById(id) {
+    return axios.get(`/api/books/${id}`).then((book) => {
+        console.log('bookAction-----------', book);
+        dispatcher.dispatch({
+            type: actionTypes.LOAD_BOOK,
+            data: book.data
+        });
+    });
 }

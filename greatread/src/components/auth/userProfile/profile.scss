@@ -24,60 +24,29 @@
         display: flex;
         justify-content: center;
         margin-top: 25px;
+
+        .nickname-item {
+            font-size: 23px;
+        }
     }
 
-    .nickname-item {
-        font-size: 23px;
-    }
-
-
-    .checkbox-container {
+    .favorite-books-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        margin: 20px;
-        margin-top: 50px;
-        border: 1px dotted #82CDDE;
-        border-radius: 2px;
+        align-items: flex-start;
+        margin-top: 30px;
+        margin: 10px;
 
-
-        .genre-title {
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
-            height: 50px;
-            color: #82CDDE;
+        .pageHeadLine {
+            font-size: 12px;
+            margin-bottom: 10px;
         }
 
-        .checkbox-box {
-            padding: 10px;
-
-        }
-
-        .checkbox {
-            margin: 10px;
+        .book {
+            display: flex
         }
     }
 
-    .save-button-container {
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .save-button {
-            border: 1px solid #52a3ba;
-            padding: 5px 0;
-            border-radius: 3px;
-            margin-bottom: 20px;
-        }
-
-        .save-button:hover {
-            background-color: #52a3ba;
-            color: white;
-        }
-    }
 }

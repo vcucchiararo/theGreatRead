@@ -4,6 +4,7 @@ import actionTypes from '../actions/actionTypes';
 
 const CHANGE_EVENT = 'change';
 let _books = [];
+let _book = null;
 
 class SearchStore extends EventEmitter {
     addChangeListener(callback) {
@@ -20,6 +21,10 @@ class SearchStore extends EventEmitter {
     getBooks() {
         return _books;
     }
+
+    getBookById(id) {
+        return id ? _books.find((book) => book.id === id) : _book;
+    }
 }
 
 const searchStore = new SearchStore();
@@ -28,6 +33,10 @@ dispatcher.register((action) => {
     switch (action.type) {
         case actionTypes.SEARCH_BOOKS:
             _books = action.data;
+            searchStore.emitChange();
+            break;
+        case actionTypes.LOAD_BOOK:
+            _book = action.data;
             searchStore.emitChange();
             break;
         default:

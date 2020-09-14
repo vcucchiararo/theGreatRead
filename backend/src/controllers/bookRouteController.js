@@ -1,61 +1,69 @@
-const get = (req, res) => {
-    if (req && req.book) {
-        const { book } = req;
-        res.json(book);
-    } else {
-        res.send('Bad parameters');
-    }
-};
+const Book = require('../models/bookModel');
+const axios = require('axios');
 
-const put = (req, res) => {
-    const { book } = req;
-    if (book && req.body.title) {
-        book.title = req.body.title;
-        book.save((error) => {
-            if (error) {
-                res.send(error);
-            } else {
-                res.json(book);
-            }
-        });
-    }
-};
+const googleApiPath = 'https://www.googleapis.com/books/v1/volumes?q=';
+const idApiPath = `${googleApiPath}`;
 
-const patch = (req, res) => {
-    const { book } = req;
-
-    if (book && req.body) {
-        if (req.body._id) {
-            delete req.body._id;
+function createBookModel(items) {
+    const book = items && items[0];
+    return (
+        book && {
+            id: book.id || '',
+            title: book.volumeInfo.title || '',
+            author: book.volumeInfo.authors
+                ? book.volumeInfo.authors[0] || ''
+                : '',
+            averageRating: book.volumeInfo.averageRating || '3',
+            image: book.volumeInfo.imageLinks
+                ? book.volumeInfo.imageLinks.thumbnail || ''
+                : '',
+            description: book.volumeInfo.description || '',
+            editorial: book.volumeInfo.publisher || '',
+            year: book.volumeInfo.publishedDate || '',
+            isbn: book.volumeInfo.industryIdentifiers
+                ? book.volumeInfo.industryIdentifiers[0].identifier || ''
+                : '',
+            genre: book.volumeInfo.categories
+                ? book.volumeInfo.categories[0] || 'Fiction'
+                : 'Fiction'
         }
+    );
+}
 
-        Object.entries(req.body).forEach((item) => {
-            const key = item[0];
-            const value = item[1];
-            book[key] = value;
+async function sendRequest(path) {
+    return await axios
+        .get(path)
+        .then((response) => {
+            return createBookModel(response.data.items || []);
+        })
+        .catch((error) => {
+            console.log(error);
         });
-        book.save((error) => {
-            if (error) {
-                res.send(error);
-            }
-            res.json(book);
-        });
-    } else {
-        res.send('Request must include a book and a body');
+}
+
+async function get(req, res) {
+    const { bookId } = req.params;
+    console.log(`${idApiPath}${bookId}`);
+
+    if (bookId) {
+        const book = await sendRequest(`${idApiPath}${bookId}`);
+
+        if (book) {
+            res.status(200);
+            return res.json(book);
+        } else {
+            res.status(204);
+        }
     }
-};
+}
 
-const deleter = (req, res) => {
-    const { book } = req;
+// const get = (req, res) => {
+//     if (req && req.book) {
+//         const { book } = req;
+//         res.json(book);
+//     } else {
+//         res.send('Bad parameters');
+//     }
+// };
 
-    if (book) {
-        book.remove((error) => {
-            if (error) {
-                res.send(error);
-            }
-            res.sendStatus(204);
-        });
-    } else {
-        res.send('Request must include a book');
-    }
-};
+module.exports = { get };

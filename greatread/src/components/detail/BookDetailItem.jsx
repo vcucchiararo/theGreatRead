@@ -6,38 +6,27 @@ import './detail.scss';
 import { favoriteBook } from '../../actions/userActions';
 
 const BookDetailItem = ({
-    description,
-    title,
-    author,
-    rating,
-    image,
-    year,
-    isbn,
-    editorial,
-    genre,
+    book,
     user,
     isAuthenticated,
-    bookId,
-    userSub,
     submit,
-    toggleFavoriteButton,
-    isFavorite
+    toggleFavoriteButton
 }) => {
     return (
         <div className="container-book">
             <div className="title">
-                <h1>{title}</h1>
-                <p>{author}</p>
+                <h1>{book.title}</h1>
+                <p>{book.author}</p>
             </div>
             <div className="container-info-book">
                 <div className="container-top">
-                    <div className="shadow-cover-image">
+                    <div className="image-container">
                         <div classname="cover-image">
-                            <img width="200" height="300" src={image} />
+                            <img width="200" height="300" src={book.image} />
                         </div>
                     </div>
                     <div className="container-ranking">
-                        <p className="number-rating">{rating}</p>
+                        <p className="number-rating">{book.rating}</p>
                     </div>
                     <div className="container-button">
                         {isAuthenticated && (
@@ -68,13 +57,6 @@ const BookDetailItem = ({
                                         />
                                     </div>
                                 )}
-                                {/* 
-                        <Link>
-                            <img
-                                className="addBook_icon"
-                                src="https://trello-attachments.s3.amazonaws.com/5f4e04cfbeb95a4c21272eae/512x512/ae5e99a44e7fab4d705c10894c4fd5d9/libro_%281%29.png"
-                            />
-                        </Link> */}
                             </>
                         )}
                     </div>
@@ -82,15 +64,15 @@ const BookDetailItem = ({
                 <div className="container-ranking-description">
                     <div className="description-book">
                         <p className="title-description">Resumen</p>
-                        <p>{description}</p>
+                        <p>{book.description}</p>
                     </div>
                 </div>
             </div>
             <AccordionComponent
-                genre={genre}
-                year={year}
-                editorial={editorial}
-                isbn={isbn}
+                genre={book.genre}
+                year={book.year}
+                editorial={book.editorial}
+                isbn={book.isbn}
             />
         </div>
     );

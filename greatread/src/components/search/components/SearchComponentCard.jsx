@@ -44,7 +44,7 @@ function SearchComponentCard({
                         <p>{averageRating}</p>
                     </div>
                 </div>
-                <div className="description">
+                {/* <div className="description">
                     <Accordion>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
@@ -63,7 +63,7 @@ function SearchComponentCard({
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
-                </div>
+                </div> */}
             </div>
         </>
     );

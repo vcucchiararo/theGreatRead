@@ -7,7 +7,7 @@ import Home from './components/home/Home';
 import Profile from './components/auth/userProfile/Profile';
 import Footer from './components/footer/Footer';
 // import Finder from './components/finder/Finder';
-import SearchComponent from './components/finder/SearchComponent';
+import SearchComponent from './components/search/SearchComponent';
 
 function App() {
     return (
