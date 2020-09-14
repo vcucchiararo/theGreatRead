@@ -4,7 +4,6 @@ import listStore from '../../../stores/listStore';
 import SliderItem from './SliderItem';
 import LoadingPage from '../../LoadingPage/LoadingPage';
 import './slider.scss';
-import { Link } from 'react-router-dom';
 
 function Slider(props) {
     const [bookList, setBookList] = useState(listStore.getBookList());

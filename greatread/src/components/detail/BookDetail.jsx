@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import searchStore from '../../stores/searchStore';
-import { loadBookList, loadBookById } from '../../actions/listActions';
+import { loadBookById } from '../../actions/listActions';
 import BookDetailItem from './BookDetailItem';
 import { useAuth0 } from '@auth0/auth0-react';
 import userStore from '../../stores/userStore';
@@ -34,7 +34,8 @@ function BookDetail({ match }) {
             setMongoUser(userStore.getUser());
         })();
         if (mongoUser && mongoUser.favoriteBooks) {
-            const isToggleButton = mongoUser.favoriteBooks.some((elem) => {
+            // const isToggleButton = mongoUser.favoriteBooks.some((elem) => {
+            mongoUser.favoriteBooks.some((elem) => {
                 return elem.id === match.params.bookId;
             });
             setToggleFavoriteButton(!toggleFavoriteButton);

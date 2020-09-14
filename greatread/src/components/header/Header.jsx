@@ -23,6 +23,7 @@ function Header({ history }) {
             <div className="header">
                 <Link className="header-logo" to="/">
                     <img
+                        alt="Logo The Great Read"
                         width="100%"
                         height="100%"
                         src="https://trello-attachments.s3.amazonaws.com/5f4d74b3457c4e749f4bfea6/847x748/f0abc621274604fc9ce77e7079853efb/GreatRead.png"
@@ -54,6 +55,7 @@ function Header({ history }) {
                                     className="icon_container"
                                 >
                                     <img
+                                        alt="Icono perfil usuario"
                                         className="icon_profile"
                                         widht="20px"
                                         height="20px"

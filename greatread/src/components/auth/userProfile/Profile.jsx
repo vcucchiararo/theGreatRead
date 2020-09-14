@@ -4,6 +4,7 @@ import './profile.scss';
 import { createUser, loadUser } from '../../../actions/userActions';
 import userStore from '../../../stores/userStore';
 import LoadingPage from '../../LoadingPage/LoadingPage';
+import { Link } from 'react-router-dom';
 
 const Profile = (props) => {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -11,12 +12,11 @@ const Profile = (props) => {
 
     useEffect(() => {
         userStore.addChangeListener(onChange);
-        if (userLoaded.length === 0) {
+        if (userLoaded) {
             user && loadUser(user.sub);
         }
-
         return () => userStore.removeChangeListener(onChange);
-    }, [userLoaded.length, user]);
+    }, [user]);
 
     function onChange() {
         setUserLoaded(userStore.getUser());
@@ -33,43 +33,56 @@ const Profile = (props) => {
     }
 
     return (
-        isAuthenticated && (
+        isAuthenticated &&
+        userLoaded && (
             <div className="profile-container">
+                <div className="nickname-container">
+                    <h1 className="nickname-item"> Hola {user.nickname}!</h1>
+                </div>
                 <div className="image-container">
                     <img src={user.picture} alt="Imagen de perfil de usuario" />
                 </div>
 
-                <div className="nickname-container">
-                    <h1 className="nickname-item"> Hola {user.nickname}!</h1>
-                </div>
                 <div className="favorite-books-container">
                     <div className="pageHeadLine">
                         <h1>Mis libros favoritos</h1>
                     </div>
                     <div className="bookShelves">
-                        <div className="bookShelfList">
-                            <div className="book">
-                                <img
-                                    className="bookCover"
-                                    src="https://i.pinimg.com/564x/d3/1a/6f/d31a6f22b8d115bc766cfeb284682060.jpg"
-                                    alt="Cover libro"
-                                    width="200"
-                                    height="300"
-                                />
-                                <div className="book-details">
-                                    <p className="bookTitle">
-                                        Freedom is space for the spirit
-                                    </p>
-                                    <p className="bookAuthor">
-                                        por Glen Hirshberg
-                                    </p>
-                                    <p className="bookRating">4</p>
-                                    <button className="bookUserShelfAction">
-                                        Ir al libro
-                                    </button>
+                        {userLoaded &&
+                            userLoaded.favoriteBooks?.map((book) => (
+                                <div
+                                    className="bookShelfList"
+                                    key={`${book.id}`}
+                                >
+                                    <div
+                                        to={`/book/${book.id}`}
+                                        className="book"
+                                    >
+                                        <Link
+                                            to={`/book/${book.id}`}
+                                            className="bookCover"
+                                        >
+                                            <img
+                                                src={`${book.image}`}
+                                                alt="Cover libro"
+                                                width="200"
+                                                height="300"
+                                            />
+                                        </Link>
+                                        <div className="book-details">
+                                            <p className="bookTitle">
+                                                {book.title}
+                                            </p>
+                                            <p className="bookAuthor">
+                                                por {book.author}
+                                            </p>
+                                            <p className="bookRating">
+                                                {book.averageRating}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            ))}
                     </div>
                 </div>
             </div>

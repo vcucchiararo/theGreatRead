@@ -7,6 +7,10 @@
 }
 
 .profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     .image-container {
         display: flex;
@@ -16,6 +20,7 @@
         img {
             border-radius: 50%;
             margin-top: 20px;
+            margin-bottom: 20px;
             width: 200px;
         }
     }
@@ -31,22 +36,60 @@
     }
 
     .favorite-books-container {
+        padding-top: 30px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
-        margin-top: 30px;
-        margin: 10px;
+        align-items: center;
+        margin-top: 10px;
+        background-color: #F5F5F5;
 
         .pageHeadLine {
             font-size: 12px;
             margin-bottom: 10px;
         }
 
-        .book {
-            display: flex
+        .bookShelves {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+
+            .bookShelfList {
+                display: flex;
+
+                .book {
+                    display: flex;
+
+                    .bookCover {
+                        padding: 10px;
+                    }
+
+                    .book-details {
+                        padding: 10px;
+                        text-decoration: none;
+                        color: black;
+                        width: 50%;
+
+                        .bookTitle {
+                            font-size: 15px;
+                            font-weight: 600;
+                        }
+
+                        .bookAuthor {
+                            color: grey;
+                            font-style: italic;
+                            font-size: 13px;
+                            margin-top: 2px;
+                        }
+
+                        .bookRating {
+                            font-size: 30px;
+                            color: #E74A10;
+                            margin-top: 4px;
+                        }
+                    }
+                }
+            }
         }
     }
-
-
 }
