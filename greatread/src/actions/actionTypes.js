@@ -11,5 +11,8 @@ export default {
     DELETE_FAVORITE_BOOK: 'DELETE_FAVORITE_BOOK',
 
     //Search actions//
-    SEARCH_BOOKS: 'SEARCH_BOOKS'
+    SEARCH_BOOKS: 'SEARCH_BOOKS',
+
+    //Home actions//
+    GENRE_BOOKS_SEARCH: 'GENRE_BOOKS_SEARCH'
 };

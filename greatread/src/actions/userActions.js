@@ -3,6 +3,7 @@ import actionTypes from './actionTypes';
 import axios from 'axios';
 
 export function createUser(userData) {
+    console.log('create----', userData);
     return axios.post('/api/users', userData).then((userData) => {
         dispatcher.dispatch({
             type: actionTypes.CREATE_USER,
@@ -12,6 +13,7 @@ export function createUser(userData) {
 }
 
 export function loadUser(userId) {
+    console.log('entro axios----', userId);
     return axios.get(`/api/users/${userId}`).then((userData) => {
         dispatcher.dispatch({
             type: actionTypes.LOAD_USER,

@@ -27,8 +27,8 @@ function createBookModelList(items) {
                 ? book.volumeInfo.industryIdentifiers[0].identifier || ''
                 : '',
             genre: book.volumeInfo.categories
-                ? book.volumeInfo.categories[0] || 'Fiction'
-                : 'Fiction'
+                ? book.volumeInfo.categories[0]
+                : ''
         };
         bookList.push(currentBook);
     });
@@ -36,7 +36,7 @@ function createBookModelList(items) {
 }
 
 async function sendRequest(path) {
-    let books = null;
+    let books = [];
     await axios
         .get(path)
         .then((response) => {
@@ -77,7 +77,7 @@ function booksController(Book) {
                 res.status(200);
                 return res.json(response);
             } else {
-                res.status(204);
+                res.status(204); // como tratamos el error!
             }
         } else if (id) {
             const response = await sendRequest(`${idApiPath}${id}`);
