@@ -46,7 +46,7 @@ async function sendRequest(path) {
             }
         })
         .catch((error) => {
-            res.status(204);
+            console.log(error);
         });
     return books;
 }
