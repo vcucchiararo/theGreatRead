@@ -10,23 +10,7 @@ function routes(Book) {
     const controller = booksRouteController(Book);
     bookRouter.route('/').get(controller.get);
 
-    // bookRouter
-    //     .route('/:bookId')
-    //     .all((req, res, next) => {
-    //         Book.findById(req.params.bookId, (error, book) => {
-    //             if (error) {
-    //                 res.send(error);
-    //             }
-    //             if (book) {
-    //                 req.book = book;
-    //                 next();
-    //             }
-    //         });
-    //     })
-    //     .get(bookRouteController.get)
-    //     .put(bookRouteController.put)
-    //     .patch(bookRouteController.patch)
-    //     .delete(bookRouteController.deleter);
+    bookRouter.route('/:bookId').get(bookRouteController.get);
 
     return bookRouter;
 }

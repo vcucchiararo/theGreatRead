@@ -3,7 +3,7 @@ import dispatcher from '../dispatcher';
 import actionTypes from '../actions/actionTypes';
 
 const CHANGE_EVENT = 'change';
-let _user = [];
+let _user = null;
 
 class UserStore extends EventEmitter {
     addChangeListener(callback) {
@@ -19,6 +19,11 @@ class UserStore extends EventEmitter {
     getUser() {
         return _user;
     }
+
+    isFavorite(bookId) {
+        debugger;
+        return _user?.favoriteBooks?.some((book) => book.id === bookId);
+    }
 }
 
 const userStore = new UserStore();
@@ -27,14 +32,10 @@ dispatcher.register((action) => {
     switch (action.type) {
         case actionTypes.LOAD_USER:
             _user = action.data;
-            console.log('.......action.data', action.data);
             userStore.emitChange();
             break;
         case actionTypes.ADD_FAVORITE_BOOK:
             _user = action.data;
-            if (_user) {
-                _user.favoriteBooks = action.data.favoriteBooks;
-            }
             userStore.emitChange();
             break;
         default:

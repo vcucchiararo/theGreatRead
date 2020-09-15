@@ -10,7 +10,6 @@ export function booksSearch(query) {
             }
         })
         .then((books) => {
-            console.log('books----', books);
             dispatcher.dispatch({
                 type: actionTypes.SEARCH_BOOKS,
                 data: books.data

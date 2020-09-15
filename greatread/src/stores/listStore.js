@@ -21,10 +21,6 @@ class ListStore extends EventEmitter {
     getBookList() {
         return _bookList;
     }
-
-    getBookById(id) {
-        return _bookList.find((book) => book.id === id);
-    }
 }
 
 const listStore = new ListStore();
@@ -33,10 +29,10 @@ dispatcher.register((action) => {
     switch (action.type) {
         case actionTypes.LOAD_BOOK_LIST:
             _bookList = action.data;
-            listStore.emitChange(_bookList);
+            listStore.emitChange();
             break;
         default:
-        // throw `The action type is unknown. action.type: ${action.type}`;
+            break;
     }
 });
 

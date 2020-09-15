@@ -5,6 +5,7 @@ const googleApiPath = 'https://www.googleapis.com/books/v1/volumes?q=';
 const authorApiPath = `${googleApiPath}inauthor:`;
 const titleApiPath = `${googleApiPath}intitle:`;
 const subjectApiPath = `${googleApiPath}subject:`;
+const idApiPath = `${googleApiPath}id`;
 
 function createBookModelList(items) {
     const bookList = [];
@@ -45,7 +46,7 @@ async function sendRequest(path) {
             }
         })
         .catch((error) => {
-            console.log(error);
+            res.status(204);
         });
     return books;
 }
@@ -53,7 +54,6 @@ async function sendRequest(path) {
 function booksController(Book) {
     async function get(req, res) {
         const { author, title, subject, id } = req.query;
-        console.log('title----', title);
 
         if (author) {
             const response = await sendRequest(`${authorApiPath}${author}`);
@@ -61,16 +61,15 @@ function booksController(Book) {
                 res.status(200);
                 return res.json(response);
             } else {
-                console.log(response);
+                res.status(204);
             }
         } else if (title) {
             const response = await sendRequest(`${titleApiPath}${title}`);
-            console.log('response---', response);
             if (response.length > 0) {
                 res.status(200);
                 return res.json(response);
             } else {
-                console.log(response);
+                res.status(204);
             }
         } else if (subject) {
             const response = await sendRequest(`${subjectApiPath}${subject}`);
@@ -78,7 +77,15 @@ function booksController(Book) {
                 res.status(200);
                 return res.json(response);
             } else {
-                console.log(response);
+                res.status(204);
+            }
+        } else if (id) {
+            const response = await sendRequest(`${idApiPath}${id}`);
+            if (response.length > 0) {
+                res.status(200);
+                return res.json(response);
+            } else {
+                res.status(204);
             }
         }
     }

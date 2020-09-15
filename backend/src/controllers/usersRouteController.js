@@ -16,9 +16,6 @@ const post = (req, res) => {
             }
         }
     });
-    // const user = new User(req.body);
-    // user.save();
-    // res.status(201).json(user);
 };
 
 module.exports = { post };

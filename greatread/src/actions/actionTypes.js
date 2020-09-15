@@ -1,6 +1,7 @@
 export default {
     //Books actions//
     LOAD_BOOK_LIST: 'LOAD_BOOK_LIST',
+    LOAD_BOOK: 'LOAD_BOOK',
 
     //User actions//
     CREATE_USER: 'CREATE_USER',
