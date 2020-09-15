@@ -21,7 +21,7 @@ export function loadUser(userId) {
 }
 
 export function favoriteBook(userSub, book) {
-    const obj = { book: book };
+    const obj = { book };
     return axios.put(`/api/users/${userSub}`, obj).then((userData) => {
         dispatcher.dispatch({
             type: actionTypes.ADD_FAVORITE_BOOK,

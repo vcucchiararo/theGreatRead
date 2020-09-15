@@ -12,46 +12,39 @@ function BookDetail({ match }) {
     const [book, setBook] = useState(
         searchStore.getBookById(match.params.bookId)
     );
-    const [userLoaded, setUserLoaded] = useState(userStore.getUser());
-    const [toggleFavoriteButton, setToggleFavoriteButton] = useState();
+
+    const [toggleFavoriteButton, setToggleFavoriteButton] = useState(
+        userStore.isFavorite(match.params.bookId)
+    );
 
     useEffect(() => {
         searchStore.addChangeListener(onChange);
+        userStore.addChangeListener(onChange);
 
         if (!book) {
             loadBookById(match.params.bookId);
+        } else if (!mongoUser) {
+            loadUser(user?.sub);
         }
-        return () => searchStore.removeChangeListener(onChange);
-    }, [book, match.params.bookId]);
+
+        return () => {
+            searchStore.removeChangeListener(onChange);
+            userStore.removeChangeListener(onChange);
+        };
+    }, [book, match.params.bookId, user, toggleFavoriteButton]);
 
     function onChange() {
         setBook(searchStore.getBookById());
-    }
-
-    function onSubmit() {
-        (async function userLoading() {
-            await loadUser(user?.sub);
-            setMongoUser(userStore.getUser());
-        })();
-        if (mongoUser && mongoUser.favoriteBooks) {
-            // const isToggleButton = mongoUser.favoriteBooks.some((elem) => {
-            mongoUser.favoriteBooks.some((elem) => {
-                return elem.id === match.params.bookId;
-            });
-            setToggleFavoriteButton(!toggleFavoriteButton);
-            const book = searchStore.getBookById(match.params.bookId);
-            favoriteBook(userLoaded.sub, book);
-        }
+        setMongoUser(userStore.getUser());
+        setToggleFavoriteButton(userStore.isFavorite(match.params.bookId));
     }
 
     return (
         <>
             {book && (
                 <BookDetailItem
-                    user={user}
                     isAuthenticated={isAuthenticated}
-                    userSub={userLoaded.sub}
-                    submit={onSubmit}
+                    toogleFavoriteBook={() => favoriteBook(mongoUser.sub, book)}
                     toggleFavoriteButton={toggleFavoriteButton}
                     book={book}
                 />

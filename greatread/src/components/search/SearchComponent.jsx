@@ -3,7 +3,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { loadUser } from '../../actions/userActions';
 import finderStore from '../../stores/searchStore';
 import userStore from '../../stores/userStore';
-
 import './searchComponent.scss';
 import SearchComponentCard from './components/SearchComponentCard';
 import LoadingPage from '../LoadingPage/LoadingPage';
@@ -16,18 +15,18 @@ function SearchComponent() {
 
     useEffect(() => {
         userStore.addChangeListener(onChange);
-        if (userLoaded.length === 0) {
+        if (!userLoaded) {
             user && loadUser(user.sub);
         }
         return () => userStore.removeChangeListener(onChange);
-    }, [userLoaded.length, user]);
+    }, [userLoaded, user]);
 
     useEffect(() => {
         finderStore.addChangeListener(onChange);
 
-        matchFavoriteBooks(userLoaded.favoriteBooks, books);
+        matchFavoriteBooks(userLoaded?.favoriteBooks, books);
         return () => finderStore.removeChangeListener(onChange);
-    }, [books, userLoaded.favoriteBooks]);
+    }, [books, userLoaded]);
 
     function matchFavoriteBooks(favoriteBooks, books) {
         let matchBooksCollection = books;
@@ -51,22 +50,24 @@ function SearchComponent() {
     }
 
     return (
-        <div>
-            <h1 className="search_title">Búsqueda</h1>
-            <div className="separator-small-footer"></div>
-            {books.length <= 0 && <LoadingPage />}
-            {matchBooks.length > 0 &&
-                matchBooks.map((book) => (
-                    <SearchComponentCard
-                        key={book.id}
-                        id={book.id}
-                        image={book.image}
-                        title={book.title}
-                        author={book.author}
-                        averageRating={book.averageRating}
-                    />
-                ))}
-        </div>
+        <>
+            <div>
+                <h1 className="search_title">Búsqueda</h1>
+                <div className="separator-small-footer"></div>
+                {books.length <= 0 && <LoadingPage />}
+                {matchBooks.length > 0 &&
+                    matchBooks.map((book) => (
+                        <SearchComponentCard
+                            key={book.id}
+                            id={book.id}
+                            image={book.image}
+                            title={book.title}
+                            author={book.author}
+                            averageRating={book.averageRating}
+                        />
+                    ))}
+            </div>
+        </>
     );
 }
 

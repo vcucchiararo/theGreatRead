@@ -43,8 +43,6 @@ async function sendRequest(path) {
 
 async function get(req, res) {
     const { bookId } = req.params;
-    console.log(`${idApiPath}${bookId}`);
-
     if (bookId) {
         const book = await sendRequest(`${idApiPath}${bookId}`);
 
@@ -56,14 +54,5 @@ async function get(req, res) {
         }
     }
 }
-
-// const get = (req, res) => {
-//     if (req && req.book) {
-//         const { book } = req;
-//         res.json(book);
-//     } else {
-//         res.send('Bad parameters');
-//     }
-// };
 
 module.exports = { get };

@@ -49,8 +49,6 @@ describe('ListStore', () => {
             dispatcher.dispatch({});
             expect(listStore).toBeFalsy();
         } catch (errorMessage) {
-            const message =
-                'The action type is unknown. action.type: undefined';
             expect(errorMessage).toBeTruthy();
         }
     });

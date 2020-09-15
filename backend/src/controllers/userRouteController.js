@@ -7,6 +7,7 @@ const put = (req, res) => {
     const { book } = req.body;
     if (user) {
         user.favoriteBooks = filterArray(user.favoriteBooks, book);
+
         user.save((error) => {
             if (error) {
                 res.status(404);
@@ -27,7 +28,6 @@ const get = (req, res) => {
     const query = {
         sub: id
     };
-    debug(query);
     User.findOne(query, (error, user) => {
         if (error) {
             res.status(404);

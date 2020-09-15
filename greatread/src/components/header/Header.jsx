@@ -44,7 +44,7 @@ function Header({ history }) {
                     </select>
                 </form>
                 <div className="header-login">
-                    <p className="text-login">¿Ya tienes cuenta?</p>
+                    {/* <p className="text-login">¿Ya tienes cuenta?</p> */}
                     <div className="header-login__button">
                         {!isAuthenticated && <Login />}
                         {isAuthenticated && (
