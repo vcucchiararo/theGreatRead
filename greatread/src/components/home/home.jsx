@@ -1,14 +1,12 @@
 import React from 'react';
 import './home.scss';
-import Slider from './slider/Slider';
+// import Slider from './slider/Slider';
+import SliderComponent from './slider/SliderComponent';
 
 function Home(props) {
     return (
         <>
-            <Slider title={'LOS MAS VALORADOS'} />
-            <Slider title={'ACCIÓN'} />
-            <Slider title={'COMEDIA'} />
-            <Slider title={'COCINA'} />
+            <SliderComponent />
         </>
     );
 }

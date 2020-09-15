@@ -2,14 +2,14 @@ import dispatcher from '../dispatcher';
 import actionTypes from './actionTypes';
 import axios from 'axios';
 
-export function booksSearch(query, selectOption) {
+export function genreBooksSearch(query, subject) {
     let params = {
-        params: { [selectOption]: query }
+        params: { [subject]: query }
     };
 
     return axios.get('/api/books', params).then((books) => {
         dispatcher.dispatch({
-            type: actionTypes.SEARCH_BOOKS,
+            type: actionTypes.GENRE_BOOKS_SEARCH,
             data: books.data
         });
     });

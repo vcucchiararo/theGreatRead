@@ -8,11 +8,12 @@ import { booksSearch } from '../../actions/finderActions';
 
 function Header({ history }) {
     const [search, setSearch] = useState();
+    const [selectOption, setSelectOption] = useState('title');
     const { isAuthenticated } = useAuth0();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await booksSearch(search);
+        await booksSearch(search, selectOption);
         history.push(`/search/${search}`);
 
         setSearch('');
@@ -37,10 +38,21 @@ function Header({ history }) {
                         placeholder="Título, autor o género..."
                         onChange={(event) => setSearch(event.target.value)}
                     ></input>
-                    <select className="select-css">
-                        <option className="option">Título</option>
-                        <option className="option">Autor</option>
-                        <option className="option">Género</option>
+                    <select
+                        className="select-css"
+                        onChange={(event) =>
+                            setSelectOption(event.target.value)
+                        }
+                    >
+                        <option className="option" value="title">
+                            Título
+                        </option>
+                        <option className="option" value="author">
+                            Autor
+                        </option>
+                        <option className="option" value="subject">
+                            Género
+                        </option>
                     </select>
                 </form>
                 <div className="header-login">
