@@ -21,10 +21,6 @@ class UserStore extends EventEmitter {
     }
 
     isFavorite(bookId) {
-        console.log(
-            'isFav-----',
-            _user?.favoriteBooks?.some((book) => book.id === bookId)
-        );
         return _user?.favoriteBooks?.some((book) => book.id === bookId);
     }
 }
@@ -32,11 +28,8 @@ class UserStore extends EventEmitter {
 const userStore = new UserStore();
 
 dispatcher.register((action) => {
-    console.log('loadUser----1-->', action);
-
     switch (action.type) {
         case actionTypes.LOAD_USER:
-            console.log('loadUser----2-->');
             _user = action.data;
             userStore.emitChange();
             break;

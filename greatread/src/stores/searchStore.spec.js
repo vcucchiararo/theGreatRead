@@ -1,7 +1,6 @@
 import searchStore from './searchStore';
 import actionTypes from '../actions/actionTypes';
 import dispatcher from '../dispatcher';
-import listStore from './listStore';
 
 function reduceAction(action, data) {
     return {

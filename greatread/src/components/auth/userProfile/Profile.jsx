@@ -13,19 +13,16 @@ const Profile = (props) => {
     useEffect(() => {
         userStore.addChangeListener(onChange);
         if (userLoaded) {
-            console.log('profile-useEffect----', user);
             user && loadUser(user.sub);
         }
         return () => userStore.removeChangeListener(onChange);
     }, [user]);
 
     function onChange() {
-        console.log('onChange----', user);
         setUserLoaded(userStore.getUser());
     }
 
     if (isAuthenticated) {
-        console.log('authenticate-----');
         createUser({
             userEmail: user.email,
             sub: user.sub,

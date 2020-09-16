@@ -19,7 +19,6 @@ export function loadBookList(query) {
 
 export function loadBookById(id) {
     return axios.get(`/api/books/${id}`).then((book) => {
-        console.log('bookAction-----------', book);
         dispatcher.dispatch({
             type: actionTypes.LOAD_BOOK,
             data: book.data
