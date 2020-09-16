@@ -60,13 +60,6 @@
     outline: 0;
 }
 
-// .separator-small {
-//     width: 100%;
-//     margin: auto;
-//     border-bottom: 0.8px solid #e74a112a;
-//     margin-bottom: 10px;
-// }
-
 .container-ranking {
     display: flex;
     width: 50%;
@@ -79,11 +72,6 @@
     font-size: 50px;
     color: #e74a11;
 }
-
-// .cover-image {
-//     width: 200px;
-//     height: 296px;
-// }
 
 .image-container {
     display: flex;
@@ -143,8 +131,3 @@
     display: none;
     overflow: hidden;
 }
-
-// Media queries
-@media screen and (min-width: 600px) {}
-
-@media screen and (min-width: 1024px) {}

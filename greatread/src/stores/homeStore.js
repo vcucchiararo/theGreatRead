@@ -24,14 +24,18 @@ class HomeStore extends EventEmitter {
 
 const homeStore = new HomeStore();
 dispatcher.register((action) => {
-    switch (action.types) {
-        case actionTypes.GENRE_BOOKS_SEARCH:
-            _books = action.data;
-            homeStore.emitChange();
-            break;
-        default:
-            break;
+    if (action.types === actionTypes.GENRE_BOOKS_SEARCH) {
+        _books = action.data;
+        homeStore.emitChange();
     }
+    // switch (action.types) {
+    //     case actionTypes.GENRE_BOOKS_SEARCH:
+    //         _books = action.data;
+    //         homeStore.emitChange();
+    //         break;
+    //     default:
+    //         break;
+    // }
 });
 
 export default homeStore;

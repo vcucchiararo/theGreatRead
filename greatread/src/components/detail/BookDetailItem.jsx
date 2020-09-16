@@ -53,17 +53,6 @@ const BookDetailItem = ({
                                             toogleFavoriteBook();
                                         }}
                                     >
-                                        {/* {!isFavorite && (
-                            <div onClick={() => submit(mongoUser, book)}>
-                                <img
-                                    className="addFav_icon"
-                                    src="https://trello-attachments.s3.amazonaws.com/5f4e04cfbeb95a4c21272eae/512x512/acf8c0e43f29a0a56ffc175fb33ed15e/corazon.png"
-                                    alt="Icono añadir libro favorito"
-                                />
-                            </div>
-                        )}
-                        {isFavorite && (
-                            <div onClick={() => submit(mongoUser, book)}> */}
                                         <img
                                             className="addFav_icon"
                                             src="https://trello-attachments.s3.amazonaws.com/5f4906a1d69abe739ecee02f/5f4e04cfbeb95a4c21272eae/1f9f8fc08c46d03b6b6fdf0b0acd00be/corazon_(1).png"

@@ -24,7 +24,7 @@ describe('USERS ROUTER CONTROLLER', () => {
         expect(statusSpy.calledWith(404)).to.be.true;
     });
 
-    it('buscamos en el modelo, cuando devuelve un usuario tiene que llamar a json con ese usuario', () => {
+    it('should call a json with a user', () => {
         const req = {
             body: 'something'
         };
@@ -40,7 +40,7 @@ describe('USERS ROUTER CONTROLLER', () => {
         expect(jsonSpy.calledWith('vanesa')).to.be.true;
     });
 
-    it('si findOne no devuelve un usuario, esperamos llamar al metodo status con un estado 201', () => {
+    it('should call status with 201', () => {
         const req = {
             body: {
                 sub: 'a1b2c3',

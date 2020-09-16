@@ -26,14 +26,18 @@ class ListStore extends EventEmitter {
 const listStore = new ListStore();
 
 dispatcher.register((action) => {
-    switch (action.type) {
-        case actionTypes.LOAD_BOOK_LIST:
-            _bookList = action.data;
-            listStore.emitChange();
-            break;
-        default:
-            break;
+    if (action.type === actionTypes.LOAD_BOOK_LIST) {
+        _bookList = action.data;
+        listStore.emitChange();
     }
+    // switch (action.type) {
+    //     case actionTypes.LOAD_BOOK_LIST:
+    //         _bookList = action.data;
+    //         listStore.emitChange();
+    //         break;
+    //     default:
+    //         break;
+    // }
 });
 
 export default listStore;
