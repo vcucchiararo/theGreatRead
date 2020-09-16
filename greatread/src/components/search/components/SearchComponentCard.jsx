@@ -7,7 +7,12 @@ function SearchComponentCard({ id, image, title, author, averageRating }) {
         <>
             <div className="card-container" key={id}>
                 <Link to={`/book/${id}`} className="image">
-                    <img width="100%" height="100%" src={image} />
+                    <img
+                        width="100%"
+                        height="100%"
+                        src={image}
+                        alt={'Cover libro'}
+                    />
                 </Link>
                 <div className="title-rating">
                     <div className="title-author">

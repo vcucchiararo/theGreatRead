@@ -24,6 +24,7 @@ function Home(props) {
                 break;
             case 'suspense':
                 setSuspenseBookList(response.data);
+                break;
             default:
                 break;
         }

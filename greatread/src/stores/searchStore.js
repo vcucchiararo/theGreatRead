@@ -23,7 +23,12 @@ class SearchStore extends EventEmitter {
     }
 
     getBookById(id) {
-        return id ? _books.find((book) => book.id === id) : _book;
+        if (id) _book = _books.find((book) => book.id === id);
+        return _book;
+    }
+
+    setBook(book) {
+        _book = book;
     }
 }
 
@@ -32,6 +37,7 @@ const searchStore = new SearchStore();
 dispatcher.register((action) => {
     switch (action.type) {
         case actionTypes.SEARCH_BOOKS:
+            _book = null;
             _books = action.data;
             searchStore.emitChange();
             break;

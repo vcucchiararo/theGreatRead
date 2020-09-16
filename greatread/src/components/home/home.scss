@@ -7,7 +7,6 @@
 }
 
 .slider-container {
-    //height: 90vw;
     background-color: white;
     display: flex;
     overflow-x: auto;
@@ -20,7 +19,6 @@
 .slider__text {
     margin-top: 10px;
     height: 2em;
-    // border: 2px yellow;
     background-color: #e65824; //#81cbdd;
     color: white;
     display: flex;
@@ -129,92 +127,3 @@
         width: 15vw;
     }
 }
-
-// * {
-//     margin: 0;
-//     padding: 0;
-//     box-sizing: border-box;
-//     font-family: 'Lato', sans-serif;
-//     text-decoration: none;
-// }
-
-// .container-slider {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     text-align: center;
-//     width: 100%;
-// }
-
-// .container-book {
-//     width: 100%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
-
-// .cover-image {
-//     width: 245px;
-//     height: 375px;
-//     box-shadow: -5px 6px 5px 0px rgba(129, 128, 128, 0.719);
-// }
-
-// .section-title {
-//     color: #E74A10;
-//     font-size: 15px;
-//     margin-bottom: 15px;
-// }
-
-// .separator-small-home {
-//     border-bottom: 1px solid #e74a1157;
-//     margin-top: 20px;
-//     width: 80%;
-// }
-
-
-// .info_container {
-//     display: flex;
-//     width: 100%;
-//     justify-content: center;
-//     align-items: center;
-
-//     .info-book {
-//         display: flex;
-//         flex-direction: column;
-//         text-align: right;
-//         width: 70%;
-
-//         .book-title {
-//             margin-top: 15px;
-//             font-size: 15px;
-//         }
-
-//         .book-author {
-//             color: grey;
-//             font-size: 15px;
-//         }
-//     }
-// }
-
-// .vertical-small-separator {
-//     display: flex;
-//     height: 40px;
-//     border-left: 0.8px solid #e74a112a;
-//     margin-left: 7px;
-//     margin-top: 15px;
-// }
-
-// .info-book-rating {
-//     display: flex;
-//     flex-direction: column;
-//     text-align: left;
-//     width: 25%;
-//     margin: 6px;
-
-//     .book-rating {
-//         color: #E74A10;
-//         font-size: 30px;
-//         margin-top: 15px;
-//     }
-// }
