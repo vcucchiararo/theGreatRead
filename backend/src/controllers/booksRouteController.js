@@ -41,6 +41,7 @@ async function sendRequest(path) {
         .get(path)
         .then((response) => {
             console.log(response);
+            console.log(response.data);
             if (response.data.totalItems > 0) {
                 const bookList = createBookModelList(response.data.items);
                 books = bookList;
@@ -66,7 +67,6 @@ function booksController(Book) {
             }
         } else if (title) {
             const response = await sendRequest(`${titleApiPath}${title}`);
-            console.log('==============', response);
             if (response.length > 0) {
                 res.status(200);
             } else {
@@ -79,7 +79,7 @@ function booksController(Book) {
                 res.status(200);
                 return res.json(response);
             } else {
-                res.status(204); // como tratamos el error!
+                res.status(204);
             }
         } else if (id) {
             const response = await sendRequest(`${idApiPath}${id}`);

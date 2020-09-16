@@ -27,4 +27,14 @@ describe('SearchStore', () => {
     it('should return the books according to the search', () => {
         expect(searchStore.getBooks()).toEqual(action.data);
     });
+
+    it('should return', () => {
+        myCallbackMockFunction = jest.fn();
+        searchStore.addChangeListener(myCallbackMockFunction);
+        action = reduceAction(actionTypes.LOAD_BOOK, [
+            { id: 1, bookTitle: 'Postales del Este' }
+        ]);
+        dispatcher.dispatch(action);
+        expect(searchStore.getBookById()).toEqual(action.data);
+    });
 });
