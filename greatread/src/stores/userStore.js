@@ -3,7 +3,7 @@ import dispatcher from '../dispatcher';
 import actionTypes from '../actions/actionTypes';
 
 const CHANGE_EVENT = 'change';
-let _user = [];
+let _user = null;
 
 class UserStore extends EventEmitter {
     addChangeListener(callback) {

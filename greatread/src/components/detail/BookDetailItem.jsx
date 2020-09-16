@@ -32,7 +32,7 @@ const BookDetailItem = ({
                     <div className="container-button">
                         {isAuthenticated && (
                             <>
-                                {toggleFavoriteButton && (
+                                {!toggleFavoriteButton && (
                                     <div
                                         onClick={(event) => {
                                             event.preventDefault();
@@ -46,7 +46,7 @@ const BookDetailItem = ({
                                         />
                                     </div>
                                 )}
-                                {!toggleFavoriteButton && (
+                                {toggleFavoriteButton && (
                                     <div
                                         onClick={(event) => {
                                             event.preventDefault();

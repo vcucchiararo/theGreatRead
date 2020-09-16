@@ -12,8 +12,9 @@ const Profile = (props) => {
 
     useEffect(() => {
         userStore.addChangeListener(onChange);
-        if (userLoaded) {
-            user && loadUser(user.sub);
+
+        if (user) {
+            loadUser(user?.sub);
         }
         return () => userStore.removeChangeListener(onChange);
     }, [user]);
@@ -43,49 +44,50 @@ const Profile = (props) => {
                 <div className="image-container">
                     <img src={user.picture} alt="Imagen de perfil de usuario" />
                 </div>
-
-                <div className="favorite-books-container">
-                    <div className="pageHeadLine">
-                        <h1>Mis libros favoritos</h1>
-                    </div>
-                    <div className="bookShelves">
-                        {userLoaded &&
-                            userLoaded.favoriteBooks?.map((book) => (
-                                <div
-                                    className="bookShelfList"
-                                    key={`${book.id}`}
-                                >
+                {userLoaded.favoriteBooks.length > 0 && (
+                    <div className="favorite-books-container">
+                        <div className="pageHeadLine">
+                            <h1>Mis libros favoritos</h1>
+                        </div>
+                        <div className="bookShelves">
+                            {userLoaded &&
+                                userLoaded.favoriteBooks?.map((book) => (
                                     <div
-                                        to={`/book/${book.id}`}
-                                        className="book"
+                                        className="bookShelfList"
+                                        key={`${book.id}`}
                                     >
-                                        <Link
+                                        <div
                                             to={`/book/${book.id}`}
-                                            className="bookCover"
+                                            className="book"
                                         >
-                                            <img
-                                                src={`${book.image}`}
-                                                alt="Cover libro"
-                                                width="200"
-                                                height="300"
-                                            />
-                                        </Link>
-                                        <div className="book-details">
-                                            <p className="bookTitle">
-                                                {book.title}
-                                            </p>
-                                            <p className="bookAuthor">
-                                                por {book.author}
-                                            </p>
-                                            <p className="bookRating">
-                                                {book.averageRating}
-                                            </p>
+                                            <Link
+                                                to={`/book/${book.id}`}
+                                                className="bookCover"
+                                            >
+                                                <img
+                                                    src={`${book.image}`}
+                                                    alt="Cover libro"
+                                                    width="200"
+                                                    height="300"
+                                                />
+                                            </Link>
+                                            <div className="book-details">
+                                                <p className="bookTitle">
+                                                    {book.title}
+                                                </p>
+                                                <p className="bookAuthor">
+                                                    por {book.author}
+                                                </p>
+                                                <p className="bookRating">
+                                                    {book.averageRating}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         )
     );

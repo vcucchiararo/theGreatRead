@@ -8,6 +8,7 @@ export function booksSearch(query, selectOption) {
     };
 
     return axios.get('/api/books', params).then((books) => {
+        debugger;
         dispatcher.dispatch({
             type: actionTypes.SEARCH_BOOKS,
             data: books.data

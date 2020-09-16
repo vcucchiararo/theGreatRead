@@ -19,23 +19,34 @@ function BookDetail({ match }) {
 
     useEffect(() => {
         searchStore.addChangeListener(onChange);
-        userStore.addChangeListener(onChange);
 
         if (!book) {
             loadBookById(match.params.bookId);
-        } else if (!mongoUser) {
-            loadUser(user?.sub);
         }
 
         return () => {
             searchStore.removeChangeListener(onChange);
-            userStore.removeChangeListener(onChange);
         };
-    }, [book, match.params.bookId, user, toggleFavoriteButton]);
+    }, [book, match.params.bookId]);
 
     function onChange() {
         setBook(searchStore.getBookById());
         setMongoUser(userStore.getUser());
+    }
+
+    useEffect(() => {
+        userStore.addChangeListener(onFavChange);
+
+        if (user) {
+            loadUser(user?.sub);
+        }
+
+        return () => {
+            userStore.removeChangeListener(onFavChange);
+        };
+    }, [user]);
+
+    function onFavChange() {
         setToggleFavoriteButton(userStore.isFavorite(match.params.bookId));
     }
 
@@ -44,7 +55,9 @@ function BookDetail({ match }) {
             {book && (
                 <BookDetailItem
                     isAuthenticated={isAuthenticated}
-                    toogleFavoriteBook={() => favoriteBook(mongoUser.sub, book)}
+                    toogleFavoriteBook={() =>
+                        favoriteBook(mongoUser?.sub, book)
+                    }
                     toggleFavoriteButton={toggleFavoriteButton}
                     book={book}
                 />

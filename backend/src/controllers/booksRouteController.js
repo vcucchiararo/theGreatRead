@@ -40,7 +40,8 @@ async function sendRequest(path) {
     await axios
         .get(path)
         .then((response) => {
-            if (response.data.items.length > 0) {
+            console.log(response);
+            if (response.data.totalItems > 0) {
                 const bookList = createBookModelList(response.data.items);
                 books = bookList;
             }
@@ -65,12 +66,13 @@ function booksController(Book) {
             }
         } else if (title) {
             const response = await sendRequest(`${titleApiPath}${title}`);
+            console.log('==============', response);
             if (response.length > 0) {
                 res.status(200);
-                return res.json(response);
             } else {
                 res.status(204);
             }
+            return res.json(response);
         } else if (subject) {
             const response = await sendRequest(`${subjectApiPath}${subject}`);
             if (response.length > 0) {
