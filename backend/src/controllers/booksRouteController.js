@@ -40,8 +40,6 @@ async function sendRequest(path) {
     await axios
         .get(path)
         .then((response) => {
-            console.log(response);
-            console.log(response.data);
             if (response.data.totalItems > 0) {
                 const bookList = createBookModelList(response.data.items);
                 books = bookList;
