@@ -2,5 +2,5 @@ projectKey=thegreatread
 serverUrl=http://localhost:9000
 serverVersion=8.4.0.35506
 dashboardUrl=http://localhost:9000/dashboard?id=thegreatread
-ceTaskId=AXSYh82V4Ou3h7RZI2sr
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXSYh82V4Ou3h7RZI2sr
+ceTaskId=AXSa_7X_4Ou3h7RZI2ss
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXSa_7X_4Ou3h7RZI2ss
