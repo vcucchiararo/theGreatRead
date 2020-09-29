@@ -1,3 +1,5 @@
+![Logo The Great Read](https://github.com/vcucchiararo/theGreatRead/blob/master/the-great-read.png)
+
 ---
 # The Great Read
 
